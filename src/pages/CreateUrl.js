@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../components/Input";
 import Display from "../components/Display";
-import styles from "./CreateUrl.module.css";
+// import styles from "./CreateUrl.module.css";
 
 const CreateUrl = () => {
   return (
