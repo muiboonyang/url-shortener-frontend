@@ -52,12 +52,7 @@ const NavBar = () => {
           {loginContext.profileName ? (
             <>
               <Navbar.Brand>
-                <NavLink
-                  to="/"
-                  exact
-                  activeClassName={styles.active}
-                  style={{ textShadow: "1px 0 grey" }}
-                >
+                <NavLink to="/" exact style={{ textShadow: "1px 0 grey" }}>
                   <FontAwesomeIcon icon={faLink} /> Link Shortener
                 </NavLink>
               </Navbar.Brand>
@@ -87,12 +82,7 @@ const NavBar = () => {
             <>
               <Nav className="me-auto">
                 <Navbar.Brand>
-                  <NavLink
-                    to="/"
-                    exact
-                    activeClassName={styles.active}
-                    style={{ textShadow: "1px 0 grey" }}
-                  >
+                  <NavLink to="/" exact style={{ textShadow: "1px 0 grey" }}>
                     <FontAwesomeIcon icon={faLink} /> Link Shortener
                   </NavLink>
                 </Navbar.Brand>

@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
 import Profile from "./pages/Profile";
 import CreateUrl from "./pages/CreateUrl";
+import Display from "./pages/Display";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -35,6 +36,7 @@ const App = () => {
             <Switch>
               <Route path="/profile" exact component={Profile} />
               <Route path="/createurl" exact component={CreateUrl} />
+              <Route path="/myurls" exact component={Display} />
             </Switch>
           ) : null}
         </Switch>
