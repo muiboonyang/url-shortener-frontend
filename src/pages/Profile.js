@@ -10,6 +10,7 @@ import styles from "./Profile.module.css";
 const Profile = () => {
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.profileName;
+
   const [userInfo, setUserInfo] = useState([]);
 
   //================

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import LoginContext from "../context/login-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
@@ -6,11 +7,17 @@ import { v4 as uuidv4 } from "uuid";
 const Display = () => {
   const [results, setResults] = useState([]);
 
+  const loginContext = useContext(LoginContext);
+  const currentUser = loginContext.profileName;
+
   const urlResults = async () => {
     try {
-      const res = await fetch(`https://url-shortener-sg.herokuapp.com/urls/`, {
-        mode: "cors",
-      });
+      const res = await fetch(
+        `https://url-shortener-sg.herokuapp.com/urls/${currentUser}`,
+        {
+          mode: "cors",
+        }
+      );
       const data = await res.json();
       setResults(data);
     } catch (err) {
@@ -47,7 +54,9 @@ const Display = () => {
           <FontAwesomeIcon
             icon={faCopy}
             onClick={() => {
-              navigator.clipboard.writeText(url.short);
+              navigator.clipboard.writeText(
+                `https://url-shortener-sg.herokuapp.com/${url.short}`
+              );
             }}
           />
         </td>
