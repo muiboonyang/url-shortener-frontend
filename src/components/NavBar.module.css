@@ -6,15 +6,16 @@
   height: auto;
   overflow: visible;
   padding: 15px;
-  margin-bottom: 10px;
-  background-image: url("https://cdn.vox-cdn.com/thumbor/VcMfVaDXYqBzbPSs8LU0vKUCdDU=/0x0:3000x2000/1200x0/filters:focal(0x0:3000x2000):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/19832394/House_Calls_Bainbridge_Au_NY_bookshelf.jpg");
+  background-color: rgb(0, 0, 0);
   font-family: "Montserrat", sans-serif;
-  box-shadow: 0 2px 10px darkgray;
+  z-index: 2;
+  /* box-shadow: 0 1px 1000px darkgray; */
+  /* z-index: 0; */
 }
 
 /* Navbar links */
 .navbar a {
-  color: rgb(85 85 85);
+  color: #c9c5c2;
   float: left;
   text-align: center;
   text-decoration: none;
@@ -24,11 +25,20 @@
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+  transition: transform 0.5s;
+  border-bottom: 2px solid rgb(0, 0, 0);
 }
 
 /* Navbar links on mouse-over */
 .navbar a:hover {
-  border-bottom: 2px solid rgb(67, 172, 173);
+  border-bottom: 2px solid rgb(255, 255, 255);
+  color: white;
+}
+
+.logoutButton {
+  background-color: black;
+  color: white;
+  border: none;
 }
 
 .message {
@@ -36,36 +46,50 @@
   text-align: center;
 }
 
-.active {
-  border-bottom: 2px solid rgb(67, 172, 173);
+.navbar .active {
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
 
-.dropdown {
-  background-color: rgb(85, 85, 85);
-  padding: 0;
-}
-
-.dropdown a {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.dropdown a:hover {
-  background-color: rgb(67, 172, 173);
-  border: none;
-}
-
-.dropdown button {
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  font-size: 15px;
-}
+/* .balance {
+  margin-right: 20px;
+} */
 
 .loggedInContainer a {
   margin-right: 15px;
 }
 
-.dropdown button:active {
-  background-color: rgb(67, 172, 173) !important;
+/* CSS for dropdown menu */
+
+.dropdown {
+  width: 150px;
+}
+
+.dropdownHeader {
+  background-color: rgb(0, 0, 0);
+  padding: 10;
+  text-transform: uppercase;
+  text-align: center;
+  width: 150px;
+}
+
+.dropdownMenu {
+  background-color: rgb(0, 0, 0);
+  padding: 0;
+}
+
+.dropdownMenu a {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.dropdownMenu a:hover {
+  background-color: rgb(161, 161, 161);
+  border: none;
+}
+
+.dropdownMenu button {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-size: 15px;
 }

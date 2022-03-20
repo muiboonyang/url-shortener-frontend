@@ -110,6 +110,7 @@ const Profile = () => {
               type="text"
               name="username"
               value={userInfo.username}
+              disabled
             />
           </Form.Group>
 

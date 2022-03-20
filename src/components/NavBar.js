@@ -7,6 +7,15 @@ import Navbar from "react-bootstrap/Navbar";
 import Alert from "react-bootstrap/Alert";
 import styles from "./NavBar.module.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSignOut,
+  faLink,
+  faUser,
+  faEnvelope,
+  faList,
+} from "@fortawesome/free-solid-svg-icons";
+
 const NavBar = () => {
   const loginContext = useContext(LoginContext);
 
@@ -40,43 +49,64 @@ const NavBar = () => {
     <>
       <div className={styles.navbar}>
         <Navbar>
-          <Navbar.Brand>
-            <NavLink
-              to="/"
-              exact
-              activeClassName={styles.active}
-              style={{ textShadow: "1px 0 grey" }}
-            >
-              <i className="fa fa-fw fa-tasks"></i>Link Shortener
-            </NavLink>
-          </Navbar.Brand>
+          {loginContext.profileName ? (
+            <>
+              <Navbar.Brand>
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName={styles.active}
+                  style={{ textShadow: "1px 0 grey" }}
+                >
+                  <FontAwesomeIcon icon={faLink} /> Link Shortener
+                </NavLink>
+              </Navbar.Brand>
 
-          <Nav>
-            {loginContext.profileName ? (
-              <div className={styles.loggedInContainer}>
+              <Nav className="me-auto">
                 <NavLink to="/createurl" activeClassName={styles.active}>
-                  <i className="fa fa-fw fa-envelope"></i> Create New Link
+                  <FontAwesomeIcon icon={faEnvelope} /> Create New Link
                 </NavLink>
                 <NavLink to="/myurls" activeClassName={styles.active}>
-                  <i className="fa fa-fw fa-list"></i>
-                  My Links
+                  <FontAwesomeIcon icon={faList} /> My Links
                 </NavLink>
+              </Nav>
 
-                <NavLink to="/profile" activeClassName={styles.active}>
-                  <i className="fa fa-fw fa-user"></i>
-                  {loginContext.profileName}
-                </NavLink>
+              <div className={styles.loggedInContainer}>
+                <Nav>
+                  <NavLink to="/profile" activeClassName={styles.active}>
+                    <FontAwesomeIcon icon={faUser} /> {loginContext.profileName}
+                  </NavLink>
 
-                <NavLink onClick={handleLogout} to="/">
-                  <i className="fa fa-fw fa-sign-out"></i>
-                </NavLink>
+                  <NavLink onClick={handleLogout} to="/">
+                    <FontAwesomeIcon icon={faSignOut} />
+                  </NavLink>
+                </Nav>
               </div>
-            ) : (
-              <NavLink to="/login" activeClassName={styles.active}>
-                <i className="fa fa-fw fa-user"></i> Log In
-              </NavLink>
-            )}
-          </Nav>
+            </>
+          ) : (
+            <>
+              <Nav className="me-auto">
+                <Navbar.Brand>
+                  <NavLink
+                    to="/"
+                    exact
+                    activeClassName={styles.active}
+                    style={{ textShadow: "1px 0 grey" }}
+                  >
+                    <FontAwesomeIcon icon={faLink} /> Link Shortener
+                  </NavLink>
+                </Navbar.Brand>
+              </Nav>
+
+              <div className={styles.loggedInContainer}>
+                <Nav>
+                  <NavLink to="/login" activeClassName={styles.active}>
+                    <FontAwesomeIcon icon={faUser} /> Log In
+                  </NavLink>
+                </Nav>
+              </div>
+            </>
+          )}
         </Navbar>
       </div>
 

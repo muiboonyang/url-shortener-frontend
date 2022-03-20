@@ -5,9 +5,13 @@ const Input = () => {
     <>
       <h1>URL Shortener</h1>
 
-      <form action="/shortUrls" method="POST" class="my-4 form-inline">
+      <form
+        action="https://url-shortener-sg.herokuapp.com/urls/shortUrls"
+        method="POST"
+        className="my-4 form-inline"
+      >
         <div class="form-group mb-2 col">
-          <label for="fullUrl" class="sr-only">
+          <label htmlFor="fullUrl" className="sr-only">
             Enter URL here:
           </label>
           <input
@@ -16,11 +20,11 @@ const Input = () => {
             type="url"
             name="fullUrl"
             id="fullUrl"
-            class="form-control"
+            className="form-control"
           />
         </div>
 
-        <button class="btn btn-primary" type="submit">
+        <button className="btn btn-primary" type="submit">
           Submit
         </button>
       </form>
