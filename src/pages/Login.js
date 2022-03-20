@@ -22,7 +22,7 @@ const Login = () => {
         `https://url-shortener-sg.herokuapp.com/sessions/login`,
         {
           method: "POST",
-          mode: "no-cors",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },

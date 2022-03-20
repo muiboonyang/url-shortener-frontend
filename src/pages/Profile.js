@@ -51,7 +51,7 @@ const Profile = () => {
         `https://url-shortener-sg.herokuapp.com/users/${currentUser}/update`,
         {
           method: "POST",
-          mode: "no-cors",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },
