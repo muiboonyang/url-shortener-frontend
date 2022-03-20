@@ -25,7 +25,19 @@ const Display = () => {
     }
   };
 
-  console.log(results);
+  const delResult = async (shortId) => {
+    try {
+      await fetch(`https://url-shortener-sg.herokuapp.com/delete/${shortId}`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     urlResults();
@@ -65,9 +77,7 @@ const Display = () => {
           <FontAwesomeIcon
             icon={faTrash}
             onClick={() => {
-              navigator.clipboard.writeText(
-                `https://url-shortener-sg.herokuapp.com/${url.short}`
-              );
+              delResult(url.short);
             }}
           />
         </td>
