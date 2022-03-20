@@ -3,6 +3,7 @@ import LoginContext from "../context/login-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
+import styles from "./Display.module.css";
 
 const Display = () => {
   const [results, setResults] = useState([]);
@@ -86,7 +87,7 @@ const Display = () => {
   });
 
   return (
-    <>
+    <div className={styles.container}>
       <table className="table table-striped table-responsive">
         <thead>
           <tr>
@@ -100,7 +101,7 @@ const Display = () => {
 
         <tbody>{displayResults}</tbody>
       </table>
-    </>
+    </div>
   );
 };
 

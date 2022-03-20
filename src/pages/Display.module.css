@@ -48,7 +48,8 @@
 
 .container {
   margin: auto;
-  padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .container h3 {

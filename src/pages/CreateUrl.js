@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import { useHistory } from "react-router-dom";
-// import styles from "./CreateUrl.module.css";
+import styles from "./CreateUrl.module.css";
 
 const CreateUrl = () => {
   const [input, setInput] = useState("");
@@ -43,11 +43,11 @@ const CreateUrl = () => {
   };
 
   return (
-    <>
-      <h1>URL Shortener</h1>
+    <div className={styles.container}>
+      <h3>URL Shortener</h3>
 
-      <form onSubmit={onSubmitQuery} className="my-4 form-inline">
-        <div className="form-group mb-2 col">
+      <form onSubmit={onSubmitQuery}>
+        <div className={styles.createUrl}>
           <label htmlFor="fullUrl" className="sr-only">
             Enter URL here:
           </label>
@@ -61,13 +61,13 @@ const CreateUrl = () => {
             value={input}
             onChange={handleSearchInput}
           />
-        </div>
 
-        <button className="btn btn-primary" type="submit">
-          Submit
-        </button>
+          <button className="btn btn-dark" type="submit">
+            Submit
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 
