@@ -5,7 +5,9 @@ import styles from "./Home.module.css";
 const Home = () => {
   const seedUser = async () => {
     try {
-      await fetch(`https://url-shortener-sg.herokuapp.com/seeduser`);
+      await fetch(`https://url-shortener-sg.herokuapp.com/seeduser`, {
+        mode: "no-cors",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -13,7 +15,9 @@ const Home = () => {
 
   const deleteUsers = async () => {
     try {
-      await fetch(`https://url-shortener-sg.herokuapp.com/delete/alluser`);
+      await fetch(`https://url-shortener-sg.herokuapp.com/delete/alluser`, {
+        mode: "no-cors",
+      });
     } catch (err) {
       console.log(err);
     }
