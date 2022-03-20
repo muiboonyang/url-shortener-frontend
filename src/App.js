@@ -15,12 +15,6 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [profileName, setProfileName] = useState("");
 
-  const handleLogin = async () => {
-    const res = await fetch("https://url-shortener-sg.herokuapp.com/sessions");
-    const data = await res.json();
-    console.log(data);
-  };
-
   return (
     <LoginContext.Provider
       value={{
@@ -28,7 +22,6 @@ const App = () => {
         setProfileName,
         loggedIn,
         setLoggedIn,
-        handleLogin,
       }}
     >
       <BrowserRouter>

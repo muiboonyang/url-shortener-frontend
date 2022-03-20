@@ -19,10 +19,10 @@ const CreateAccount = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://sei33-community-app.herokuapp.com/users/new",
+        "https://url-shortener-sg.herokuapp.com/users/new",
         {
           method: "POST",
-          mode: "cors",
+          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
           },
@@ -36,6 +36,7 @@ const CreateAccount = () => {
 
       const data = await res.json();
       console.log(data);
+
       if (res.status === 200) {
         setSuccessMessage("Account created!");
         setShowMessage(true);

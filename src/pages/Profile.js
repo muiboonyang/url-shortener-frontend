@@ -16,7 +16,7 @@ const Profile = () => {
   // Fetch user data from API (by specific username)
   //================
 
-  const url = `https://sei33-community-app.herokuapp.com/users/${currentUser}`;
+  const url = `https://url-shortener-sg.herokuapp.com/users/${currentUser}`;
 
   const getUserInfo = async () => {
     try {
@@ -53,10 +53,10 @@ const Profile = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `https://sei33-community-app.herokuapp.com/users/${currentUser}/update`,
+        `https://url-shortener-sg.herokuapp.com/users/${currentUser}/update`,
         {
           method: "POST",
-          mode: "cors",
+          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
           },

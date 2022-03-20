@@ -19,10 +19,10 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://sei33-community-app.herokuapp.com/sessions/new",
+        "https://url-shortener-sg.herokuapp.com/sessions/login",
         {
           method: "POST",
-          mode: "cors",
+          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
           },
