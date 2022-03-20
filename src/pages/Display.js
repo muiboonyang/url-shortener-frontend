@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/login-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 
 const Display = () => {
@@ -50,6 +50,7 @@ const Display = () => {
             {url.short}
           </a>
         </td>
+        <td>{url.clicks}</td>
         <td>
           <FontAwesomeIcon
             icon={faCopy}
@@ -60,7 +61,16 @@ const Display = () => {
             }}
           />
         </td>
-        <td>{url.clicks}</td>
+        <td>
+          <FontAwesomeIcon
+            icon={faTrash}
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `https://url-shortener-sg.herokuapp.com/${url.short}`
+              );
+            }}
+          />
+        </td>
       </tr>
     );
   });
@@ -72,8 +82,9 @@ const Display = () => {
           <tr>
             <th>Full URL</th>
             <th>Short URL</th>
-            <th>Copy</th>
             <th>Clicks</th>
+            <th>Copy</th>
+            <th>Delete</th>
           </tr>
         </thead>
 
