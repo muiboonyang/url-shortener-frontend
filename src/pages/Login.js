@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://url-shortener-sg.herokuapp.com/sessions/login",
+        `https://url-shortener-sg.herokuapp.com/sessions/login`,
         {
           method: "POST",
           mode: "no-cors",

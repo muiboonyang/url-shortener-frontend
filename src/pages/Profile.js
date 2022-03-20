@@ -39,11 +39,6 @@ const Profile = () => {
 
   const [password, setPassword] = useState("");
   const [name, setName] = useState(userInfo.name);
-  const [email, setEmail] = useState(userInfo.email);
-  const [contact, setContact] = useState(userInfo.contact);
-  const [address, setAddress] = useState(userInfo.address);
-  const [unit, setUnit] = useState(userInfo.unit);
-  const [zipcode, setZipcode] = useState(userInfo.zipcode);
 
   const [successMessage, setSuccessMessage] = useState("");
   const [failureMessage, setFailureMessage] = useState("");
@@ -63,11 +58,6 @@ const Profile = () => {
           body: JSON.stringify({
             password: password,
             name: name,
-            email: email,
-            contact: contact,
-            address: address,
-            unit: unit,
-            zipcode: zipcode,
           }),
         }
       );
@@ -80,11 +70,6 @@ const Profile = () => {
         setShowMessage(true);
         setPassword("");
         setName("");
-        setEmail("");
-        setContact("");
-        setAddress("");
-        setUnit("");
-        setZipcode("");
         // loginContext.setLoggedIn(false);
       } else {
         setFailureMessage("Account not updated!");
@@ -151,62 +136,6 @@ const Profile = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder={userInfo.name}
-              />
-            </Form.Group>
-          </Row>
-
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formEmail">
-              <Form.Label>Email address: </Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={userInfo.email}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} className="mb-3" controlId="formNumber">
-              <Form.Label>Contact number: </Form.Label>
-              <Form.Control
-                type="number"
-                name="contact"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                placeholder={userInfo.contact}
-              />
-            </Form.Group>
-          </Row>
-
-          <Form.Group className="mb-3" controlId="formGridAddress">
-            <Form.Label>Address: </Form.Label>
-            <Form.Control
-              name="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder={userInfo.address}
-            />
-          </Form.Group>
-
-          <Row className="mb-3">
-            <Form.Group as={Col} className="mb-3" controlId="formGridUnit">
-              <Form.Label>Unit number: </Form.Label>
-              <Form.Control
-                name="unit"
-                value={unit}
-                onChange={(e) => setUnit(e.target.value)}
-                placeholder={userInfo.unit}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} className="mb-3" controlId="formGridZip">
-              <Form.Label>Zip code: </Form.Label>
-              <Form.Control
-                name="zipcode"
-                value={zipcode}
-                onChange={(e) => setZipcode(e.target.value)}
-                placeholder={userInfo.zipcode}
               />
             </Form.Group>
           </Row>

@@ -19,7 +19,7 @@ const CreateAccount = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://url-shortener-sg.herokuapp.com/users/new",
+        `https://url-shortener-sg.herokuapp.com/users/new`,
         {
           method: "POST",
           mode: "no-cors",
