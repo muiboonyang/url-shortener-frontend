@@ -25,8 +25,6 @@ const CreateAccount = () => {
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin":
-              "https://url-shortener-sg.netlify.app/",
           },
           body: JSON.stringify({
             username: username,
