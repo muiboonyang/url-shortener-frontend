@@ -39,7 +39,6 @@ const CreateUrl = () => {
       shortenUrl();
       setInput("");
       history.push("/myurls");
-      window.location.reload(false);
     }
   };
 

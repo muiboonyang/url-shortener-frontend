@@ -30,7 +30,7 @@ const Display = () => {
   useEffect(() => {
     urlResults();
     // eslint-disable-next-line
-  }, []);
+  }, [results]);
 
   const displayResults = results.map((url) => {
     return (
