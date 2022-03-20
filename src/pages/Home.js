@@ -6,7 +6,11 @@ const Home = () => {
   const seedUser = async () => {
     try {
       await fetch(`https://url-shortener-sg.herokuapp.com/seeduser`, {
+        method: "POST",
         mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
     } catch (err) {
       console.log(err);
@@ -16,7 +20,11 @@ const Home = () => {
   const deleteUsers = async () => {
     try {
       await fetch(`https://url-shortener-sg.herokuapp.com/delete/alluser`, {
+        method: "POST",
         mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
     } catch (err) {
       console.log(err);

@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Display = () => {
+  const [results, setResults] = useState("");
+
+  const urlResults = async () => {
+    try {
+      const res = await fetch(`https://url-shortener-sg.herokuapp.com/urls/`, {
+        mode: "cors",
+      });
+      const data = res.json();
+      setResults(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log(results);
+
   return <></>;
 };
 
