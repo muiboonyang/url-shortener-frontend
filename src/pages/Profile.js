@@ -9,9 +9,11 @@ import styles from "./Profile.module.css";
 
 const Profile = () => {
   const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.profileName;
+  const currentUser = loginContext.user;
 
-  const [userInfo, setUserInfo] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   //================
   // Fetch user data from API (by specific username)
@@ -23,7 +25,8 @@ const Profile = () => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      setUserInfo(data);
+      setUsername(data.username);
+      setName(data.name);
     } catch (err) {
       console.log(err);
     }
@@ -37,10 +40,6 @@ const Profile = () => {
   //================
   // Update current user
   //================
-
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState(userInfo.name);
-  const [username, setUsername] = useState(userInfo.username);
 
   const [successMessage, setSuccessMessage] = useState("");
   const [failureMessage, setFailureMessage] = useState("");
@@ -82,6 +81,14 @@ const Profile = () => {
     }
   };
 
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
   return (
     <>
       <div className={styles.message}>
@@ -111,7 +118,7 @@ const Profile = () => {
             <Form.Control
               type="text"
               name="username"
-              value={username}
+              value={currentUser}
               disabled
             />
           </Form.Group>
@@ -123,7 +130,7 @@ const Profile = () => {
               name="password"
               value={password}
               placeholder="Enter new password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
               required
             />
           </Form.Group>
@@ -136,9 +143,8 @@ const Profile = () => {
               <Form.Control
                 type="input"
                 name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder={userInfo.name}
+                onChange={handleNameChange}
+                placeholder={name}
               />
             </Form.Group>
           </Row>

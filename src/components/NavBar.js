@@ -18,6 +18,8 @@ import {
 
 const NavBar = () => {
   const loginContext = useContext(LoginContext);
+  const currentUser = loginContext.user;
+  const profileName = loginContext.profileName;
 
   const [successMessage, setSuccessMessage] = useState("");
   const [failureMessage, setFailureMessage] = useState("");
@@ -34,7 +36,7 @@ const NavBar = () => {
       if (res.status === 200) {
         setSuccessMessage("Log out successful!");
         loginContext.setLoggedIn(false);
-        loginContext.setProfileName("");
+        loginContext.User("");
         setShowMessage(true);
       } else {
         setFailureMessage("Log out unsuccessful!");
@@ -49,7 +51,7 @@ const NavBar = () => {
     <>
       <div className={styles.navbar}>
         <Navbar>
-          {loginContext.profileName ? (
+          {currentUser ? (
             <>
               <Navbar.Brand>
                 <NavLink to="/" exact style={{ textShadow: "1px 0 grey" }}>
@@ -69,7 +71,7 @@ const NavBar = () => {
               <div className={styles.loggedInContainer}>
                 <Nav>
                   <NavLink to="/profile" activeClassName={styles.active}>
-                    <FontAwesomeIcon icon={faUser} /> {loginContext.profileName}
+                    <FontAwesomeIcon icon={faUser} /> {profileName}
                   </NavLink>
 
                   <NavLink onClick={handleLogout} to="/">

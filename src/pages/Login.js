@@ -38,7 +38,8 @@ const Login = () => {
       if (res.status === 200) {
         setSuccessMessage("Log in successful!");
         loginContext.setLoggedIn(true);
-        loginContext.setProfileName(data.username);
+        loginContext.setUser(data.username);
+        loginContext.setProfileName(data.name);
         setShowMessage(true);
         setUsername("");
         setPassword("");

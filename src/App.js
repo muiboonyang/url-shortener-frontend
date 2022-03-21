@@ -13,8 +13,9 @@ import CreateUrl from "./pages/CreateUrl";
 import Display from "./pages/Display";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [profileName, setProfileName] = useState("");
+  const [user, setUser] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
   const [updateThis, setUpdateThis] = useState(0);
 
   return (
@@ -26,6 +27,8 @@ const App = () => {
         setLoggedIn,
         updateThis,
         setUpdateThis,
+        user,
+        setUser,
       }}
     >
       <BrowserRouter>

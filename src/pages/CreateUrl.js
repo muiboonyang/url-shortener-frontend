@@ -7,7 +7,7 @@ const CreateUrl = () => {
   const [input, setInput] = useState("");
 
   const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.profileName;
+  const currentUser = loginContext.user;
   let setUpdateThis = loginContext.setUpdateThis;
   let updateThis = loginContext.updateThis;
 

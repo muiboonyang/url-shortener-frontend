@@ -9,10 +9,8 @@ const Display = () => {
   const [results, setResults] = useState([]);
 
   const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.profileName;
+  const currentUser = loginContext.user;
   const updateThis = loginContext.updateThis;
-
-  console.log(updateThis);
 
   const urlResults = async () => {
     try {
