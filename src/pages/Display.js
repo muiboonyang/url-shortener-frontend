@@ -10,6 +10,9 @@ const Display = () => {
 
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.profileName;
+  const updateThis = loginContext.updateThis;
+
+  console.log(updateThis);
 
   const urlResults = async () => {
     try {
@@ -41,9 +44,9 @@ const Display = () => {
   };
 
   useEffect(() => {
-    urlResults();
+    setTimeout(urlResults, 1);
     // eslint-disable-next-line
-  }, [results]);
+  }, [updateThis, delResult]);
 
   const displayResults = results.map((url) => {
     return (

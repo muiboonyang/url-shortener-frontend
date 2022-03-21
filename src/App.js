@@ -15,6 +15,7 @@ import Display from "./pages/Display";
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [profileName, setProfileName] = useState("");
+  const [updateThis, setUpdateThis] = useState(0);
 
   return (
     <LoginContext.Provider
@@ -23,6 +24,8 @@ const App = () => {
         setProfileName,
         loggedIn,
         setLoggedIn,
+        updateThis,
+        setUpdateThis,
       }}
     >
       <BrowserRouter>

@@ -40,6 +40,7 @@ const Profile = () => {
 
   const [password, setPassword] = useState("");
   const [name, setName] = useState(userInfo.name);
+  const [username, setUsername] = useState(userInfo.username);
 
   const [successMessage, setSuccessMessage] = useState("");
   const [failureMessage, setFailureMessage] = useState("");
@@ -110,7 +111,7 @@ const Profile = () => {
             <Form.Control
               type="text"
               name="username"
-              value={userInfo.username}
+              value={username}
               disabled
             />
           </Form.Group>

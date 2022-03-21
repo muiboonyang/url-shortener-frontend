@@ -8,6 +8,8 @@ const CreateUrl = () => {
 
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.profileName;
+  let setUpdateThis = loginContext.setUpdateThis;
+  let updateThis = loginContext.updateThis;
 
   const history = useHistory();
 
@@ -38,6 +40,7 @@ const CreateUrl = () => {
     if (input.length > 0) {
       shortenUrl();
       setInput("");
+      setUpdateThis(updateThis + 1);
       history.push("/myurls");
     }
   };
