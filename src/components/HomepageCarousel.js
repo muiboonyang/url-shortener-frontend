@@ -20,7 +20,7 @@ const HomepageCarousel = () => {
               <img
                 className="d-block w-100"
                 src="https://i.picsum.photos/id/1033/2048/1365.jpg?hmac=zEuPfX7t6U866nzXjWF41bf-uxkKOnf1dDrHXmhcK-Q"
-                alt="Image-1"
+                alt="carousel-1"
               />
             </Carousel.Item>
 
@@ -28,7 +28,7 @@ const HomepageCarousel = () => {
               <img
                 className="d-block w-100"
                 src="https://i.picsum.photos/id/1041/5184/2916.jpg?hmac=TW_9o6HeD7H7I7NVo-S1Fa1iAvzQ10uvmJqsXvNoi0M"
-                alt="Image-2"
+                alt="carousel-2"
               />
             </Carousel.Item>
           </Carousel>
@@ -45,7 +45,7 @@ const HomepageCarousel = () => {
               <img
                 className="d-block w-100"
                 src="https://i.picsum.photos/id/1033/2048/1365.jpg?hmac=zEuPfX7t6U866nzXjWF41bf-uxkKOnf1dDrHXmhcK-Q"
-                alt="Image-1"
+                alt="carousel-1"
               />
             </Carousel.Item>
 
@@ -53,7 +53,7 @@ const HomepageCarousel = () => {
               <img
                 className="d-block w-100"
                 src="https://i.picsum.photos/id/1041/5184/2916.jpg?hmac=TW_9o6HeD7H7I7NVo-S1Fa1iAvzQ10uvmJqsXvNoi0M"
-                alt="Image-2"
+                alt="carousel-2"
               />
             </Carousel.Item>
           </Carousel>
