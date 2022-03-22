@@ -54,7 +54,7 @@ const Display = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          full: "https://www.google.com.sg/",
+          url: "https://www.google.com.sg/",
         }),
       });
     } catch (err) {
