@@ -4,6 +4,7 @@ import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
+import { BrowserRouter } from "react-router-dom";
 
 const Login = () => {
   const loginContext = useContext(LoginContext);
@@ -107,9 +108,11 @@ const Login = () => {
 
         <Form>
           <div className="d-grid gap-2">
-            <NavLink to="/register">
-              <button className={styles.create}>Create Account</button>
-            </NavLink>
+            <BrowserRouter>
+              <NavLink to="/register">
+                <button className={styles.create}>Create Account</button>
+              </NavLink>
+            </BrowserRouter>
           </div>
         </Form>
 

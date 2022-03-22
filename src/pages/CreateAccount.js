@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import styles from "./CreateAccount.module.css";
+import { BrowserRouter } from "react-router-dom";
 
 const CreateAccount = () => {
   const [username, setUsername] = useState("");
@@ -131,11 +132,13 @@ const CreateAccount = () => {
 
         <Form>
           <div className="d-grid gap-2">
-            <NavLink to="/login">
-              <button className={styles.login} type="submit">
-                Already have an account? Click here to log in
-              </button>
-            </NavLink>
+            <BrowserRouter>
+              <NavLink to="/login">
+                <button className={styles.login} type="submit">
+                  Already have an account? Click here to log in
+                </button>
+              </NavLink>
+            </BrowserRouter>
           </div>
         </Form>
 

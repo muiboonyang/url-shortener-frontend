@@ -36,7 +36,7 @@ const NavBar = () => {
       if (res.status === 200) {
         setSuccessMessage("Log out successful!");
         loginContext.setLoggedIn(false);
-        loginContext.User("");
+        loginContext.setUser("");
         setShowMessage(true);
       } else {
         setFailureMessage("Log out unsuccessful!");

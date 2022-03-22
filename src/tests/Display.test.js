@@ -15,7 +15,9 @@ describe("async component", () => {
     // will not call the API in your original file, will give it fake results
     window.fetch = jest.fn();
     window.fetch.mockResolvedValueOnce({
-      json: async () => [{ id: "880", name: "Whatever" }],
+      json: async () => [
+        { clicks: "test", username: "test", full: "test", short: "test" },
+      ],
     });
 
     render(<Display />);
