@@ -1,0 +1,30 @@
+.fillscreen {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 81px;
+  bottom: 0px;
+}
+
+.carousel img {
+  object-fit: cover;
+}
+
+.carousel {
+  text-align: center;
+  position: relative;
+  margin: auto;
+  width: 100%;
+}
+
+/* .carouselCaption {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 27%;
+  margin-right: 40%;
+}
+
+.carouselCaption p {
+  font-size: 65px;
+} */

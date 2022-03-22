@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import styles from "./Home.module.css";
+import HomepageCarousel from "../components/HomepageCarousel";
 
 const Home = () => {
   const seedUser = async () => {
@@ -33,6 +34,7 @@ const Home = () => {
 
   return (
     <>
+      <HomepageCarousel />
       <div className={styles.buttons}>
         <Button onClick={seedUser} variant="dark" type="submit" size="sm">
           Seed Users
