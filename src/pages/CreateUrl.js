@@ -46,7 +46,7 @@ const CreateUrl = () => {
 
   return (
     <div className={styles.container}>
-      <h3>URL Shortener</h3>
+      <h3>Link Shortener</h3>
 
       <form onSubmit={onSubmitQuery}>
         <div className={styles.createUrl}>
