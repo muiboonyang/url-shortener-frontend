@@ -1,18 +1,15 @@
-import { render } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Login from "../pages/Login";
+import { shallow, configure } from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 
-describe("async component", () => {
-  test("renders items if request succeeds", async () => {
-    // create a 'fetch'
-    // hijack the 'fetch' (will not run fetch in code), return what is expected of me (a fake json)
-    // will not call the API in your original file, will give it fake results
+configure({ adapter: new Adapter() });
 
-    // Post function - Login
-    window.fetch = jest.fn();
-    window.fetch.mockResolvedValueOnce({
-      json: async () => [{ username: "test", password: "test" }],
-    });
-
-    render(<Login />);
+describe("Test form submission", () => {
+  test("Submits", () => {
+    const onSubmit = jest.fn();
+    const wrapper = shallow(<Login onSubmit={onSubmit} />);
+    wrapper.find("form").simulate("submit");
+    expect(onSubmit).toHaveBeenCalled();
   });
 });

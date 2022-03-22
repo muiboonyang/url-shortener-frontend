@@ -16,8 +16,7 @@ const App = () => {
   const [profileName, setProfileName] = useState("");
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [updateThis, setUpdateThis] = useState(0);
-  const updateThis = useRef(0);
+  const updateThis = useRef(false);
 
   return (
     <LoginContext.Provider

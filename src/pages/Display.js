@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/login-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCopy,
+  faTrash,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./Display.module.css";
 
@@ -41,6 +45,23 @@ const Display = () => {
     }
   };
 
+  const editResult = async (shortId) => {
+    try {
+      await fetch(`https://url-shortener-sg.herokuapp.com/${shortId}/update`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          full: "https://www.google.com.sg/",
+        }),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     setTimeout(urlResults, 1);
     // eslint-disable-next-line
@@ -54,6 +75,7 @@ const Display = () => {
             {url.full}
           </a>
         </td>
+
         <td>
           <a
             href={`https://url-shortener-sg.herokuapp.com/${url.short}`}
@@ -64,7 +86,9 @@ const Display = () => {
             {url.short}
           </a>
         </td>
+
         <td>{url.clicks}</td>
+
         <td>
           <FontAwesomeIcon
             icon={faCopy}
@@ -75,6 +99,16 @@ const Display = () => {
             }}
           />
         </td>
+
+        <td>
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            onClick={() => {
+              editResult(url.short);
+            }}
+          />
+        </td>
+
         <td>
           <FontAwesomeIcon
             icon={faTrash}
@@ -96,6 +130,7 @@ const Display = () => {
             <th>Short URL</th>
             <th>Clicks</th>
             <th>Copy</th>
+            <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>

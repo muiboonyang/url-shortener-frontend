@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
-import { BrowserRouter } from "react-router-dom";
 
 const Login = () => {
   const loginContext = useContext(LoginContext);
@@ -74,7 +73,7 @@ const Login = () => {
         <h3>Log In</h3>
         <br />
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} data-testid="form">
           <Form.Group className="mb-3" controlId="formLoginUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
@@ -108,11 +107,9 @@ const Login = () => {
 
         <Form>
           <div className="d-grid gap-2">
-            <BrowserRouter>
-              <NavLink to="/register">
-                <button className={styles.create}>Create Account</button>
-              </NavLink>
-            </BrowserRouter>
+            <Link to="/register">
+              <button className={styles.create}>Create Account</button>
+            </Link>
           </div>
         </Form>
 

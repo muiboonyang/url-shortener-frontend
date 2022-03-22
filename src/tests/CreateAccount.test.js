@@ -1,62 +1,48 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-// import { render, screen } from "@testing-library/react";
+import React from "react";
+import { mount } from "enzyme";
 import CreateAccount from "../pages/CreateAccount";
+import { configure } from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 
-// ===================
-// Mocking
-// can be used on API, databases
-// create a 'fetch'
-// ===================
+configure({ adapter: new Adapter() });
 
-describe("async component", () => {
-  test("renders items if request succeeds", async () => {
-    // create a 'fetch'
-    // hijack the 'fetch' (will not run fetch in code), return what is expected of me (a fake json)
-    // will not call the API in your original file, will give it fake results
-    window.fetch = jest.fn();
-    window.fetch.mockResolvedValueOnce({
-      json: async () => [
-        {
-          username: "username",
-          password: "password",
-          name: "name",
-        },
-      ],
-    });
+const setup = (props = {}) => {
+  const wrapper = mount(<CreateAccount {...props} />);
+  return wrapper;
+};
 
-    render(<CreateAccount />);
+describe("FormComponent", () => {
+  it("renders without errors", () => {
+    const wrapper = setup();
+    const component = wrapper.find(CreateAccount);
 
-    // const listElement = await screen.findAllByRole("listitem");
-    // expect(listElement).not.toHaveLength(0);
+    expect(component).toHaveLength(1);
   });
-});
 
-describe("Test buttons", () => {
-  test("button click", () => {
-    render(<CreateAccount />);
-    // const mockCallBack = jest.fn();
+  it("calls the onSubmit method", () => {
+    const handleSubmitMock = jest.fn();
+    const wrapper = setup({ onSubmit: handleSubmitMock });
 
-    // const buttonElement = screen.getByRole("button");
-    // buttonElement.simulate("click");
-    // expect(mockCallBack.mock.calls.length).toEqual(1);
+    const form = wrapper.find("form").at(0);
+    form.simulate("submit", {});
 
-    const buttonElement = screen.getAllByRole("button")[0];
-    userEvent.click(buttonElement);
-
-    const buttonElement2 = screen.getAllByRole("button")[1];
-    userEvent.click(buttonElement2);
+    expect(handleSubmitMock).toHaveBeenCalledTimes(1);
   });
+
+  // it("calls the onSubmit method with the expected value", () => {
+  //   const handleSubmitMock = jest.fn();
+  //   const wrapper = setup({ onSubmit: handleSubmitMock });
+
+  //   const nameInput = wrapper.find("input[name='name']");
+  //   nameInput.simulate("change", {
+  //     target: { name: "name", value: "Ernest" },
+  //   });
+
+  //   const form = wrapper.find("form").at(0);
+  //   form.simulate("submit", {});
+
+  //   expect(handleSubmitMock).toHaveBeenCalledWith({
+  //     name: "Ernest",
+  //   });
+  // });
 });
-
-// test("Test button click", () => {
-//   render(<CreateAccount />);
-
-//   const buttonElement = screen.getByRole("button");
-//   userEvent.click(buttonElement);
-
-// const original = screen.getByText("after button click", { exact: false });
-// expect(original).toBeInTheDocument;
-
-// const afterClick = screen.queryByText("original text", { exact: false });
-// expect(afterClick).not.toBeInTheDocument;

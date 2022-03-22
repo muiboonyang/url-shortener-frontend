@@ -24,21 +24,6 @@
   color: black;
 }
 
-.createRequest {
-  margin: auto;
-  width: 800px;
-  padding-top: 15px;
-}
-
-.createRequest h3 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
 .createUrl {
   margin: auto;
   width: 70%;

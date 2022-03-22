@@ -39,7 +39,7 @@ const CreateUrl = () => {
     if (input.length > 0) {
       shortenUrl();
       setInput("");
-      updateThis.current += 1;
+      updateThis.current = !updateThis.current;
       history.push("/myurls");
     }
   };
