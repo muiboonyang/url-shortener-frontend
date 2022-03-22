@@ -118,7 +118,7 @@ const Profile = () => {
             <Form.Control
               type="text"
               name="username"
-              value={currentUser}
+              value={username}
               disabled
             />
           </Form.Group>
