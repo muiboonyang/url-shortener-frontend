@@ -53,29 +53,29 @@ const Display = () => {
     }
   };
 
-  const editResult = async (shortId) => {
-    try {
-      const res = await fetch(
-        `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            url: "https://www.google.com.sg/",
-          }),
-        }
-      );
+  // const editResult = async (shortId) => {
+  //   try {
+  //     const res = await fetch(
+  //       `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
+  //       {
+  //         method: "POST",
+  //         mode: "cors",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           url: "https://www.google.com.sg/",
+  //         }),
+  //       }
+  //     );
 
-      if (res.status === 200) {
-        urlResults();
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     if (res.status === 200) {
+  //       urlResults();
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   console.log(results);
 
@@ -125,7 +125,8 @@ const Display = () => {
           <FontAwesomeIcon
             icon={faPenToSquare}
             onClick={() => {
-              editResult(url.short);
+              // editResult(url.short);
+              toggleEditForm();
             }}
           />
         </td>
@@ -146,7 +147,30 @@ const Display = () => {
     <>
       {isEditing ? (
         <>
-          <EditDisplay longurl={results.full} />
+          <EditDisplay
+            longurl={results.full}
+            toggleEditForm={toggleEditForm}
+            // editResult={editResult}
+            results={results}
+            urlResults={urlResults}
+          />
+
+          <div className={styles.container}>
+            <table className="table table-striped table-responsive">
+              <thead>
+                <tr>
+                  <th>Full URL</th>
+                  <th>Short URL</th>
+                  <th>Clicks</th>
+                  <th>Copy</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+
+              <tbody>{displayResults}</tbody>
+            </table>
+          </div>
         </>
       ) : (
         <div className={styles.container}>
