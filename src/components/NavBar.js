@@ -12,7 +12,7 @@ import {
   faSignOut,
   faLink,
   faUser,
-  faEnvelope,
+  faGlobe,
   faList,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -61,7 +61,7 @@ const NavBar = () => {
 
               <Nav className="me-auto">
                 <NavLink to="/createurl" activeClassName={styles.active}>
-                  <FontAwesomeIcon icon={faEnvelope} /> Create New Link
+                  <FontAwesomeIcon icon={faGlobe} /> Create New Link
                 </NavLink>
                 <NavLink to="/myurls" activeClassName={styles.active}>
                   <FontAwesomeIcon icon={faList} /> My Links

@@ -8,23 +8,32 @@ const CreateUrl = () => {
 
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.user;
-  let updateThis = loginContext.updateThis;
+  let setRenderCount = loginContext.setRenderCount;
+  let renderCount = loginContext.renderCount;
 
   const history = useHistory();
 
   const shortenUrl = async () => {
     try {
-      await fetch(`https://url-shortener-sg.herokuapp.com/urls/shortUrls`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: currentUser,
-          url: input,
-        }),
-      });
+      const res = await fetch(
+        `https://url-shortener-sg.herokuapp.com/urls/shortUrls`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: currentUser,
+            url: input,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (data.status === "ok") {
+        console.log(data.message);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +48,7 @@ const CreateUrl = () => {
     if (input.length > 0) {
       shortenUrl();
       setInput("");
-      updateThis.current = !updateThis.current;
+      setRenderCount(renderCount + 1);
       history.push("/myurls");
     }
   };

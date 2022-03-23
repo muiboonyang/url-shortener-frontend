@@ -14,10 +14,12 @@ const Display = () => {
   const [results, setResults] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [index, setIndex] = useState("");
+  console.log(results);
 
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.user;
-  const updateThis = loginContext.updateThis;
+  const renderCount = loginContext.renderCount;
+  console.log(renderCount);
 
   const urlResults = async () => {
     try {
@@ -27,6 +29,7 @@ const Display = () => {
           mode: "cors",
         }
       );
+
       const data = await res.json();
       setResults(data);
     } catch (err) {
@@ -54,8 +57,6 @@ const Display = () => {
     }
   };
 
-  console.log(results);
-
   const toggleEditForm = (shortId) => {
     setIsEditing(!isEditing);
 
@@ -68,7 +69,7 @@ const Display = () => {
   useEffect(() => {
     setTimeout(urlResults, 1);
     // eslint-disable-next-line
-  }, [updateThis]);
+  }, [renderCount]);
 
   const displayResults = results.map((url) => {
     return (

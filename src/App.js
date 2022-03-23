@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import LoginContext from "./context/login-context";
@@ -16,7 +16,8 @@ const App = () => {
   const [profileName, setProfileName] = useState("");
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const updateThis = useRef(false);
+
+  const [renderCount, setRenderCount] = useState(0);
 
   return (
     <LoginContext.Provider
@@ -25,9 +26,10 @@ const App = () => {
         setProfileName,
         loggedIn,
         setLoggedIn,
-        updateThis,
         user,
         setUser,
+        renderCount,
+        setRenderCount,
       }}
     >
       <BrowserRouter>
