@@ -56,6 +56,14 @@ const EditDisplay = (props) => {
         <button className="btn btn-dark" type="submit">
           Submit
         </button>
+
+        <button
+          className="btn btn-outline-dark"
+          type="button"
+          onClick={props.toggleEditForm}
+        >
+          Cancel
+        </button>
       </div>
     </form>
   );
