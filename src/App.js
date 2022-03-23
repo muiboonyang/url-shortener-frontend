@@ -26,7 +26,6 @@ const App = () => {
         loggedIn,
         setLoggedIn,
         updateThis,
-        // setUpdateThis,
         user,
         setUser,
       }}

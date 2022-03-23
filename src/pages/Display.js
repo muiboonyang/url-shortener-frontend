@@ -8,9 +8,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./Display.module.css";
+import EditDisplay from "./EditDisplay";
 
 const Display = () => {
   const [results, setResults] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.user;
@@ -33,13 +35,19 @@ const Display = () => {
 
   const delResult = async (shortId) => {
     try {
-      await fetch(`https://url-shortener-sg.herokuapp.com/delete/${shortId}`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `https://url-shortener-sg.herokuapp.com/delete/${shortId}`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (res.status === 200) {
+        urlResults();
+      }
     } catch (err) {
       console.log(err);
     }
@@ -47,25 +55,38 @@ const Display = () => {
 
   const editResult = async (shortId) => {
     try {
-      await fetch(`https://url-shortener-sg.herokuapp.com/${shortId}/update`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          url: "https://www.google.com.sg/",
-        }),
-      });
+      const res = await fetch(
+        `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            url: "https://www.google.com.sg/",
+          }),
+        }
+      );
+
+      if (res.status === 200) {
+        urlResults();
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
+  console.log(results);
+
+  const toggleEditForm = () => {
+    setIsEditing(!isEditing);
+  };
+
   useEffect(() => {
     setTimeout(urlResults, 1);
     // eslint-disable-next-line
-  }, [updateThis, delResult]);
+  }, [updateThis]);
 
   const displayResults = results.map((url) => {
     return (
@@ -122,22 +143,30 @@ const Display = () => {
   });
 
   return (
-    <div className={styles.container}>
-      <table className="table table-striped table-responsive">
-        <thead>
-          <tr>
-            <th>Full URL</th>
-            <th>Short URL</th>
-            <th>Clicks</th>
-            <th>Copy</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
+    <>
+      {isEditing ? (
+        <>
+          <EditDisplay longurl={results.full} />
+        </>
+      ) : (
+        <div className={styles.container}>
+          <table className="table table-striped table-responsive">
+            <thead>
+              <tr>
+                <th>Full URL</th>
+                <th>Short URL</th>
+                <th>Clicks</th>
+                <th>Copy</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
 
-        <tbody>{displayResults}</tbody>
-      </table>
-    </div>
+            <tbody>{displayResults}</tbody>
+          </table>
+        </div>
+      )}
+    </>
   );
 };
 
