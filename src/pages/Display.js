@@ -67,7 +67,7 @@ const Display = () => {
   };
 
   useEffect(() => {
-    setTimeout(urlResults, 1);
+    urlResults();
     // eslint-disable-next-line
   }, [renderCount]);
 

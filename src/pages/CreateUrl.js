@@ -33,6 +33,7 @@ const CreateUrl = () => {
       const data = await res.json();
       if (data.status === "ok") {
         console.log(data.message);
+        history.push("/myurls");
       }
     } catch (err) {
       console.log(err);
@@ -49,7 +50,6 @@ const CreateUrl = () => {
       shortenUrl();
       setInput("");
       setRenderCount(renderCount + 1);
-      history.push("/myurls");
     }
   };
 
