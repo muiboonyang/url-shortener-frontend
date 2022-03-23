@@ -14,12 +14,12 @@ const Display = () => {
   const [results, setResults] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [index, setIndex] = useState("");
-  console.log(results);
+  // console.log(results);
 
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.user;
   const renderCount = loginContext.renderCount;
-  console.log(renderCount);
+  // console.log(renderCount);
 
   const urlResults = async () => {
     try {
