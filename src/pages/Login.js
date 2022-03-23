@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -14,6 +14,12 @@ const Login = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [failureMessage, setFailureMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
+
+  const history = useHistory();
+
+  const handleRegisterRedirect = (path) => {
+    history.push("/register");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,9 +113,9 @@ const Login = () => {
 
         <Form>
           <div className="d-grid gap-2">
-            <Link to="/register">
-              <button className={styles.create}>Create Account</button>
-            </Link>
+            <button className={styles.create} onClick={handleRegisterRedirect}>
+              Create Account
+            </button>
           </div>
         </Form>
 

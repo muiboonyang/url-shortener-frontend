@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -14,6 +14,12 @@ const CreateAccount = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [failureMessage, setFailureMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
+
+  const history = useHistory();
+
+  const handleLoginRedirect = (path) => {
+    history.push("/login");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -131,11 +137,13 @@ const CreateAccount = () => {
 
         <Form>
           <div className="d-grid gap-2">
-            <Link to="/login">
-              <button className={styles.login} type="submit">
-                Already have an account? Click here to log in
-              </button>
-            </Link>
+            <button
+              className={styles.login}
+              type="submit"
+              onClick={handleLoginRedirect}
+            >
+              Already have an account? Click here to log in
+            </button>
           </div>
         </Form>
 

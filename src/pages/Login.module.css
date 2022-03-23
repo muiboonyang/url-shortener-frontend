@@ -5,23 +5,19 @@
   border-radius: 15px;
 }
 
-.message {
-  font-size: 1.2em;
-  text-align: center;
-}
-
 .login {
   margin: auto;
   width: 500px;
 }
 
-.container h3 {
+.login h3 {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   font-size: 1.5rem;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
 }
 .create,
 .submit {
