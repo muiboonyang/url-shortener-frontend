@@ -28,5 +28,4 @@ A link shortener app made using the MERN stack (MongoDB, Express React, Node).
 <h3>References</h3>
 <ul>
    <li><a href="https://www.youtube.com/watch?v=SLpUKAGnm-g" target="_blank">Web Dev Simplified - How To Build A URL Shortener With Node.js, Express, and MongoDB</a></li>
-   <li>Update account password and name</li>
 </ul>
