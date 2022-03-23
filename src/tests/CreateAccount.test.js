@@ -1,17 +1,17 @@
+//////////////////////////
+// Sample test - 1 out of 3 passed
+//////////////////////////
+
 import React from "react";
-import { mount } from "enzyme";
 import CreateAccount from "../pages/CreateAccount";
-import { configure } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { mount } from "enzyme";
 
-configure({ adapter: new Adapter() });
-
-const setup = (props = {}) => {
-  const wrapper = mount(<CreateAccount {...props} />);
+const setup = () => {
+  const wrapper = mount(<CreateAccount />);
   return wrapper;
 };
 
-describe("FormComponent", () => {
+describe("CreateAccount Component", () => {
   it("renders without errors", () => {
     const wrapper = setup();
     const component = wrapper.find(CreateAccount);
@@ -23,8 +23,8 @@ describe("FormComponent", () => {
     const handleSubmitMock = jest.fn();
     const wrapper = setup({ onSubmit: handleSubmitMock });
 
-    const form = wrapper.find("form").at(0);
-    form.simulate("submit", {});
+    const form = wrapper.find("form");
+    form.simulate("submit");
 
     expect(handleSubmitMock).toHaveBeenCalledTimes(1);
   });
@@ -38,8 +38,8 @@ describe("FormComponent", () => {
       target: { name: "name", value: "Ernest" },
     });
 
-    const form = wrapper.find("form").at(0);
-    form.simulate("submit", {});
+    const form = wrapper.find("form");
+    form.simulate("submit");
 
     expect(handleSubmitMock).toHaveBeenCalledWith({
       name: "Ernest",

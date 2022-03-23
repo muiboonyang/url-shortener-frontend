@@ -131,11 +131,9 @@ const CreateAccount = () => {
               Submit
             </button>
           </div>
-        </form>
 
-        <hr />
+          <hr />
 
-        <Form>
           <div className="d-grid gap-2">
             <button
               className={styles.login}
@@ -145,7 +143,7 @@ const CreateAccount = () => {
               Already have an account? Click here to log in
             </button>
           </div>
-        </Form>
+        </form>
 
         <br />
       </div>

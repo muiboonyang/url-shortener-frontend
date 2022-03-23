@@ -107,17 +107,15 @@ const Login = () => {
           <div className="d-grid gap-2">
             <button className={styles.submit}>Submit</button>
           </div>
-        </form>
 
-        <hr />
+          <hr />
 
-        <Form>
           <div className="d-grid gap-2">
             <button className={styles.create} onClick={handleRegisterRedirect}>
               Create Account
             </button>
           </div>
-        </Form>
+        </form>
 
         <br />
       </div>
