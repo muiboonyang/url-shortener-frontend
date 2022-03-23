@@ -13,6 +13,7 @@ import EditDisplay from "./EditDisplay";
 const Display = () => {
   const [results, setResults] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [index, setIndex] = useState("");
 
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.user;
@@ -53,34 +54,15 @@ const Display = () => {
     }
   };
 
-  // const editResult = async (shortId) => {
-  //   try {
-  //     const res = await fetch(
-  //       `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
-  //       {
-  //         method: "POST",
-  //         mode: "cors",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           url: "https://www.google.com.sg/",
-  //         }),
-  //       }
-  //     );
-
-  //     if (res.status === 200) {
-  //       urlResults();
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   console.log(results);
 
-  const toggleEditForm = () => {
+  const toggleEditForm = (shortId) => {
     setIsEditing(!isEditing);
+
+    const index = results.findIndex((object) => {
+      return object.short === shortId;
+    });
+    setIndex(index);
   };
 
   useEffect(() => {
@@ -125,8 +107,7 @@ const Display = () => {
           <FontAwesomeIcon
             icon={faPenToSquare}
             onClick={() => {
-              // editResult(url.short);
-              toggleEditForm();
+              toggleEditForm(url.short);
             }}
           />
         </td>
@@ -150,9 +131,9 @@ const Display = () => {
           <EditDisplay
             longurl={results.full}
             toggleEditForm={toggleEditForm}
-            // editResult={editResult}
             results={results}
             urlResults={urlResults}
+            index={index}
           />
 
           <div className={styles.container}>

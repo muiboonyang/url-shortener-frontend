@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import styles from "./EditDisplay.module.css";
 
 const EditDisplay = (props) => {
   const [linkEdit, setLink] = useState(props.link);
   let results = props.results;
-  console.log(results);
+  let index = props.index;
 
   const editResult = async (shortId) => {
     try {
@@ -35,30 +36,27 @@ const EditDisplay = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const newExpense = {
-    //   id,
-    //   description: descriptionEdit.trim(),
-    //   price: (Math.round(parseFloat(priceEdit) * 100) / 100).toFixed(2),
-    //   date: Date.parse(dateEdit),
-    // };
-    editResult(results[0].short);
+    editResult(results[index].short);
     props.toggleEditForm();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      Edit long url:{" "}
-      <input
-        className="editInput"
-        name="description"
-        type="text"
-        onChange={(e) => handleLinkChange(e.target.value)}
-        value={linkEdit}
-        placeholder={results[0].full}
-      />
-      <button className="editSubmitButton" type="submit">
-        Submit
-      </button>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.createUrl}>
+        <label className={styles.label}>Edit long url: </label>
+        <input
+          className="form-control"
+          type="url"
+          name="fullUrl"
+          id="fullUrl"
+          onChange={(e) => handleLinkChange(e.target.value)}
+          value={linkEdit}
+          placeholder={results[index].full}
+        />
+        <button className="btn btn-dark" type="submit">
+          Submit
+        </button>
+      </div>
     </form>
   );
 };
