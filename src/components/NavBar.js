@@ -29,7 +29,10 @@ const NavBar = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://url-shortener-sg.herokuapp.com/sessions/logout"
+        "https://url-shortener-sg.herokuapp.com/sessions/logout",
+        {
+          mode: "cors",
+        }
       );
       await res.json();
 
