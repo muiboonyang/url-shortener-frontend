@@ -30,8 +30,8 @@ const EditDisplay = (props) => {
     }
   };
 
-  const handleLinkChange = (value) => {
-    setLink(value);
+  const handleLinkChange = (event) => {
+    setLink(event.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -49,7 +49,7 @@ const EditDisplay = (props) => {
           type="url"
           name="fullUrl"
           id="fullUrl"
-          onChange={(e) => handleLinkChange(e.target.value)}
+          onChange={handleLinkChange}
           value={linkEdit}
           placeholder={results[index].full}
         />

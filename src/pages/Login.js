@@ -17,7 +17,7 @@ const Login = () => {
 
   const history = useHistory();
 
-  const handleRegisterRedirect = (path) => {
+  const handleRegisterRedirect = () => {
     history.push("/register");
   };
 
@@ -58,6 +58,14 @@ const Login = () => {
     }
   };
 
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.message}>
@@ -88,7 +96,7 @@ const Login = () => {
               name="username"
               value={username}
               placeholder="Enter username"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleUsernameChange}
             />
           </Form.Group>
 
@@ -100,7 +108,7 @@ const Login = () => {
               name="password"
               value={password}
               placeholder="Enter password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
           </Form.Group>
 

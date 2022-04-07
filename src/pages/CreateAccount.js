@@ -58,6 +58,18 @@ const CreateAccount = () => {
     }
   };
 
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
   return (
     <>
       <div className={styles.message}>
@@ -94,7 +106,8 @@ const CreateAccount = () => {
               name="username"
               value={username}
               placeholder="Enter username"
-              onChange={(e) => setUsername(e.target.value)}
+              // onChange={(e) => setUsername(e.target.value)}
+              onChange={handleUsernameChange}
             />
           </Form.Group>
 
@@ -106,7 +119,8 @@ const CreateAccount = () => {
               name="password"
               value={password}
               placeholder="Enter password"
-              onChange={(e) => setPassword(e.target.value)}
+              // onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
           </Form.Group>
 
@@ -119,8 +133,9 @@ const CreateAccount = () => {
                 type="input"
                 name="name"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
                 placeholder="Enter name"
+                // onChange={(e) => setName(e.target.value)}
+                onChange={handleNameChange}
                 required
               />
             </Form.Group>
