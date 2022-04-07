@@ -25,9 +25,6 @@ const Display = () => {
         `https://url-shortener-sg.herokuapp.com/urls/${user}`,
         {
           mode: "cors",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
         }
       );
 
@@ -47,7 +44,6 @@ const Display = () => {
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
           },
         }
       );
