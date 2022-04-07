@@ -17,14 +17,12 @@ const Display = () => {
   // console.log(results);
 
   const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.user;
-  const renderCount = loginContext.renderCount;
-  // console.log(renderCount);
+  const { user, renderCount } = loginContext;
 
   const urlResults = async () => {
     try {
       const res = await fetch(
-        `https://url-shortener-sg.herokuapp.com/urls/${currentUser}`,
+        `https://url-shortener-sg.herokuapp.com/urls/${user}`,
         {
           mode: "cors",
         }

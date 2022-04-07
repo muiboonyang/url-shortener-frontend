@@ -3,8 +3,7 @@ import styles from "./EditDisplay.module.css";
 
 const EditDisplay = (props) => {
   const [linkEdit, setLink] = useState(props.link);
-  let results = props.results;
-  let index = props.index;
+  let { results, index } = props;
 
   const editResult = async (shortId) => {
     try {

@@ -7,9 +7,7 @@ const CreateUrl = () => {
   const [input, setInput] = useState("");
 
   const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.user;
-  let setRenderCount = loginContext.setRenderCount;
-  let renderCount = loginContext.renderCount;
+  let { currentUser, setRenderCount, renderCount } = loginContext;
 
   const history = useHistory();
 

@@ -16,7 +16,6 @@ const App = () => {
   const [profileName, setProfileName] = useState("");
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-
   const [renderCount, setRenderCount] = useState(0);
 
   return (

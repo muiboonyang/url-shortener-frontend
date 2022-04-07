@@ -9,7 +9,7 @@ import styles from "./Profile.module.css";
 
 const Profile = () => {
   const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.user;
+  const { user } = loginContext;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +19,7 @@ const Profile = () => {
   // Fetch user data from API (by specific username)
   //================
 
-  const url = `https://url-shortener-sg.herokuapp.com/users/${currentUser}`;
+  const url = `https://url-shortener-sg.herokuapp.com/users/${user}`;
 
   const getUserInfo = async () => {
     try {
@@ -49,7 +49,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `https://url-shortener-sg.herokuapp.com/users/${currentUser}/update`,
+        `https://url-shortener-sg.herokuapp.com/users/${user}/update`,
         {
           method: "POST",
           mode: "cors",
