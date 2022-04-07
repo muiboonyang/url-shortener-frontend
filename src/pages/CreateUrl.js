@@ -7,7 +7,7 @@ const CreateUrl = () => {
   const [input, setInput] = useState("");
 
   const loginContext = useContext(LoginContext);
-  let { currentUser, setRenderCount, renderCount } = loginContext;
+  let { user, setRenderCount, renderCount } = loginContext;
 
   const history = useHistory();
 
@@ -21,7 +21,7 @@ const CreateUrl = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: currentUser,
+            username: user,
             url: input,
           }),
         }
