@@ -28,7 +28,6 @@ const CreateAccount = () => {
         `https://url-shortener-sg.herokuapp.com/users/new`,
         {
           method: "POST",
-          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },

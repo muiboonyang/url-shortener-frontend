@@ -11,7 +11,6 @@ const EditDisplay = (props) => {
         `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
         {
           method: "POST",
-          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },

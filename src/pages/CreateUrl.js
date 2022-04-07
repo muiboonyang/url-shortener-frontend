@@ -17,7 +17,6 @@ const CreateUrl = () => {
         `https://url-shortener-sg.herokuapp.com/urls/shortUrls`,
         {
           method: "POST",
-          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },

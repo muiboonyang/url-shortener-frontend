@@ -8,7 +8,6 @@ const Home = () => {
     try {
       await fetch(`https://url-shortener-sg.herokuapp.com/seeduser`, {
         method: "POST",
-        mode: "cors",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -23,7 +22,6 @@ const Home = () => {
     try {
       await fetch(`https://url-shortener-sg.herokuapp.com/delete/alluser`, {
         method: "POST",
-        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },

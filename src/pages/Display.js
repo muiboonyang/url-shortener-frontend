@@ -22,10 +22,7 @@ const Display = () => {
   const urlResults = async () => {
     try {
       const res = await fetch(
-        `https://url-shortener-sg.herokuapp.com/urls/${user}`,
-        {
-          mode: "cors",
-        }
+        `https://url-shortener-sg.herokuapp.com/urls/${user}`
       );
 
       const data = await res.json();
@@ -41,7 +38,6 @@ const Display = () => {
         `https://url-shortener-sg.herokuapp.com/delete/${shortId}`,
         {
           method: "POST",
-          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },
