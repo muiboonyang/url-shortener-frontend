@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -93,7 +93,7 @@ const Profile = () => {
       <div className={styles.message}>
         {successMessage && showMessage ? (
           <>
-            <Redirect to="/" />
+            <Navigate to="/" />
           </>
         ) : null}
         {failureMessage && showMessage ? (

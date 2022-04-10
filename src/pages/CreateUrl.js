@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./CreateUrl.module.css";
 
 const CreateUrl = () => {
@@ -9,7 +9,7 @@ const CreateUrl = () => {
   const loginContext = useContext(LoginContext);
   let { user, setRenderCount, renderCount } = loginContext;
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const shortenUrl = async () => {
     try {
@@ -30,7 +30,7 @@ const CreateUrl = () => {
       const data = await res.json();
       if (data.status === "ok") {
         console.log(data.message);
-        history.push("/myurls");
+        navigate("/myurls");
       }
     } catch (err) {
       console.log(err);

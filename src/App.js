@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import LoginContext from "./context/login-context";
 
@@ -33,19 +33,19 @@ const App = () => {
     >
       <BrowserRouter>
         <NavBar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/register" exact component={CreateAccount} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<CreateAccount />} />
 
           {loggedIn ? (
-            <Switch>
-              <Route path="/profile" exact component={Profile} />
-              <Route path="/createurl" exact component={CreateUrl} />
-              <Route path="/myurls" exact component={Display} />
-            </Switch>
+            <React.Fragment>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/createurl" element={<CreateUrl />} />
+              <Route path="/myurls" element={<Display />} />
+            </React.Fragment>
           ) : null}
-        </Switch>
+        </Routes>
       </BrowserRouter>
     </LoginContext.Provider>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -15,10 +15,10 @@ const Login = () => {
   const [failureMessage, setFailureMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleRegisterRedirect = () => {
-    history.push("/register");
+    navigate("/register");
   };
 
   const handleSubmit = async (e) => {
@@ -68,7 +68,7 @@ const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.message}>
-        {successMessage ? <Redirect to="/" /> : null}
+        {successMessage ? <Navigate to="/" /> : null}
         {failureMessage && showMessage ? (
           <Alert
             variant="danger"

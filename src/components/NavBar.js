@@ -1,4 +1,4 @@
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
@@ -105,7 +105,7 @@ const NavBar = () => {
       <div className={styles.message}>
         {successMessage && showMessage ? (
           <>
-            <Redirect to="/login" />
+            <Navigate to="/login" />
             <Alert
               variant="success"
               onClose={() => setShowMessage(false)}

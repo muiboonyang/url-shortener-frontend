@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -15,10 +15,10 @@ const CreateAccount = () => {
   const [failureMessage, setFailureMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLoginRedirect = (path) => {
-    history.push("/login");
+    navigate("/login");
   };
 
   const handleSubmit = async (e) => {
