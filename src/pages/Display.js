@@ -122,50 +122,32 @@ const Display = () => {
   return (
     <>
       {isEditing ? (
-        <>
-          <EditDisplay
-            longurl={results.full}
-            toggleEditForm={toggleEditForm}
-            results={results}
-            urlResults={urlResults}
-            index={index}
-          />
-
-          <div className={styles.container}>
-            <table className="table table-striped table-responsive">
-              <thead>
-                <tr>
-                  <th>Full URL</th>
-                  <th>Short URL</th>
-                  <th>Clicks</th>
-                  <th>Copy</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-
-              <tbody>{displayResults}</tbody>
-            </table>
-          </div>
-        </>
+        <EditDisplay
+          longurl={results.full}
+          toggleEditForm={toggleEditForm}
+          results={results}
+          urlResults={urlResults}
+          index={index}
+        />
       ) : (
-        <div className={styles.container}>
-          <table className="table table-striped table-responsive">
-            <thead>
-              <tr>
-                <th>Full URL</th>
-                <th>Short URL</th>
-                <th>Clicks</th>
-                <th>Copy</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-
-            <tbody>{displayResults}</tbody>
-          </table>
-        </div>
+        ""
       )}
+      <div className={styles.container}>
+        <table className="table table-striped table-responsive">
+          <thead>
+            <tr>
+              <th>Full URL</th>
+              <th>Short URL</th>
+              <th>Clicks</th>
+              <th>Copy</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody>{displayResults}</tbody>
+        </table>
+      </div>
     </>
   );
 };
