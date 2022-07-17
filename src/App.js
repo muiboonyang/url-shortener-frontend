@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import LoginContext from "./context/login-context";
 
 import NavBar from "./components/NavBar";

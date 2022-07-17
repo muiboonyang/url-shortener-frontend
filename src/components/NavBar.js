@@ -3,7 +3,6 @@ import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import Dropdown from "react-bootstrap/Dropdown";
 import Alert from "react-bootstrap/Alert";
 import styles from "./NavBar.module.css";
 
@@ -34,10 +33,11 @@ const NavBar = () => {
       await res.json();
 
       if (res.status === 200) {
-        setSuccessMessage("Log out successful!");
         loginContext.setLoggedIn(false);
         loginContext.setUser("");
-        setShowMessage(true);
+        // setSuccessMessage("Log out successful!");
+        // setShowMessage(true);
+        //handleLogoutRedirect();
       } else {
         setFailureMessage("Log out unsuccessful!");
         setShowMessage(true);
@@ -54,28 +54,32 @@ const NavBar = () => {
           {currentUser ? (
             <>
               <Navbar.Brand>
-                <NavLink to="/" exact style={{ textShadow: "1px 0 grey" }}>
+                <NavLink
+                  to="/"
+                  exact="true"
+                  style={{ textShadow: "1px 0 grey" }}
+                >
                   <FontAwesomeIcon icon={faLink} /> Link Shortener
                 </NavLink>
               </Navbar.Brand>
 
               <Nav className="me-auto">
-                <NavLink to="/createurl" activeClassName={styles.active}>
+                <NavLink to="/createurl" activeclassname={styles.active}>
                   <FontAwesomeIcon icon={faGlobe} /> Create New Link
                 </NavLink>
-                <NavLink to="/myurls" activeClassName={styles.active}>
+                <NavLink to="/myurls" activeclassname={styles.active}>
                   <FontAwesomeIcon icon={faList} /> My Links
                 </NavLink>
               </Nav>
 
               <div className={styles.loggedInContainer}>
                 <Nav>
-                  <NavLink to="/profile" activeClassName={styles.active}>
+                  <NavLink to="/profile" activeclassname={styles.active}>
                     <FontAwesomeIcon icon={faUser} /> {profileName}
                   </NavLink>
 
-                  <NavLink onClick={handleLogout} to="/">
-                    <FontAwesomeIcon icon={faSignOut} />
+                  <NavLink to="/">
+                    <FontAwesomeIcon icon={faSignOut} onClick={handleLogout} />
                   </NavLink>
                 </Nav>
               </div>
@@ -84,7 +88,11 @@ const NavBar = () => {
             <>
               <Nav className="me-auto">
                 <Navbar.Brand>
-                  <NavLink to="/" exact style={{ textShadow: "1px 0 grey" }}>
+                  <NavLink
+                    to="/"
+                    exact="true"
+                    style={{ textShadow: "1px 0 grey" }}
+                  >
                     <FontAwesomeIcon icon={faLink} /> Link Shortener
                   </NavLink>
                 </Navbar.Brand>
@@ -92,7 +100,7 @@ const NavBar = () => {
 
               <div className={styles.loggedInContainer}>
                 <Nav>
-                  <NavLink to="/login" activeClassName={styles.active}>
+                  <NavLink to="/login" activeclassname={styles.active}>
                     <FontAwesomeIcon icon={faUser} /> Log In
                   </NavLink>
                 </Nav>

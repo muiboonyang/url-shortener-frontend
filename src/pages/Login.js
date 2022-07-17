@@ -1,9 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import LoginContext from "../context/login-context";
-import Form from "react-bootstrap/Form";
+
 import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
+
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const Login = () => {
   const loginContext = useContext(LoginContext);
@@ -86,43 +90,40 @@ const Login = () => {
         <h3>Log In</h3>
         <br />
 
-        <form onSubmit={handleSubmit} data-testid="form">
-          <Form.Group className="mb-3" controlId="formLoginUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              name="username"
-              value={username}
-              placeholder="Enter username"
-              onChange={handleUsernameChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formLoginPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Enter password"
-              onChange={handlePasswordChange}
-            />
-          </Form.Group>
-
-          <div className="d-grid gap-2">
-            <button className={styles.submit}>Submit</button>
-          </div>
-
+        <Box component="form" onSubmit={handleSubmit} data-testid="form">
+          <TextField
+            required
+            fullWidth
+            id="outlined-required"
+            label="Username"
+            value={username}
+            onChange={handleUsernameChange}
+          />
+          <br /> <br />
+          <TextField
+            required
+            fullWidth
+            id="outlined-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <br /> <br />
+          <Button variant="contained" type="submit" size="large" fullWidth>
+            Submit
+          </Button>
           <hr />
-
-          <div className="d-grid gap-2">
-            <button className={styles.create} onClick={handleRegisterRedirect}>
-              Create Account
-            </button>
-          </div>
-        </form>
+          <Button
+            variant="outlined"
+            size="large"
+            fullWidth
+            onClick={handleRegisterRedirect}
+          >
+            Create Account
+          </Button>
+        </Box>
 
         <br />
       </div>

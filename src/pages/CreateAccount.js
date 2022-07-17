@@ -17,7 +17,7 @@ const CreateAccount = () => {
 
   const navigate = useNavigate();
 
-  const handleLoginRedirect = (path) => {
+  const handleLoginRedirect = () => {
     navigate("/login");
   };
 
@@ -105,7 +105,6 @@ const CreateAccount = () => {
               name="username"
               value={username}
               placeholder="Enter username"
-              // onChange={(e) => setUsername(e.target.value)}
               onChange={handleUsernameChange}
             />
           </Form.Group>
@@ -118,7 +117,6 @@ const CreateAccount = () => {
               name="password"
               value={password}
               placeholder="Enter password"
-              // onChange={(e) => setPassword(e.target.value)}
               onChange={handlePasswordChange}
             />
           </Form.Group>
@@ -133,7 +131,6 @@ const CreateAccount = () => {
                 name="name"
                 value={name}
                 placeholder="Enter name"
-                // onChange={(e) => setName(e.target.value)}
                 onChange={handleNameChange}
                 required
               />
