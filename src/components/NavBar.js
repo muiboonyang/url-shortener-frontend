@@ -1,10 +1,11 @@
-import { NavLink, Navigate } from "react-router-dom";
-import React, { useState, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Alert from "react-bootstrap/Alert";
+
 import styles from "./NavBar.module.css";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,12 +21,15 @@ const NavBar = () => {
   const currentUser = loginContext.user;
   const profileName = loginContext.profileName;
 
-  const [successMessage, setSuccessMessage] = useState("");
-  const [failureMessage, setFailureMessage] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogoutRedirect = () => {
+    navigate("/login");
+  };
 
   const handleLogout = async (e) => {
     e.preventDefault();
+    loginContext.setIsLoading(true);
     try {
       const res = await fetch(
         "https://url-shortener-sg.herokuapp.com/sessions/logout"
@@ -35,16 +39,14 @@ const NavBar = () => {
       if (res.status === 200) {
         loginContext.setLoggedIn(false);
         loginContext.setUser("");
-        // setSuccessMessage("Log out successful!");
-        // setShowMessage(true);
-        //handleLogoutRedirect();
+        handleLogoutRedirect();
       } else {
-        setFailureMessage("Log out unsuccessful!");
-        setShowMessage(true);
+        throw new Error("Something went wrong.");
       }
     } catch (err) {
       console.log(err);
     }
+    loginContext.setIsLoading(false);
   };
 
   return (
@@ -110,29 +112,18 @@ const NavBar = () => {
         </Navbar>
       </div>
 
-      <div className={styles.message}>
-        {successMessage && showMessage ? (
-          <>
-            <Navigate to="/login" />
-            <Alert
-              variant="success"
-              onClose={() => setShowMessage(false)}
-              dismissible
-            >
-              {successMessage}
-            </Alert>
-          </>
-        ) : null}
-        {failureMessage && showMessage ? (
-          <Alert
-            variant="danger"
-            onClose={() => setShowMessage(false)}
-            dismissible
-          >
-            {failureMessage}
-          </Alert>
-        ) : null}
-      </div>
+      {loginContext.isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <LoadingSpinner />
+        </div>
+      ) : null}
     </>
   );
 };

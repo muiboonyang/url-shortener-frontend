@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LoginContext from "../context/login-context";
 
-import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -15,18 +15,20 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [successMessage, setSuccessMessage] = useState("");
-  const [failureMessage, setFailureMessage] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
-
   const navigate = useNavigate();
 
   const handleRegisterRedirect = () => {
     navigate("/register");
   };
 
+  const handleLoginRedirect = () => {
+    navigate("/createurl");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    loginContext.setIsLoading(true);
+
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/sessions/login`,
@@ -45,20 +47,19 @@ const Login = () => {
       const data = await res.json();
 
       if (res.status === 200) {
-        setSuccessMessage("Log in successful!");
         loginContext.setLoggedIn(true);
         loginContext.setUser(data.username);
         loginContext.setProfileName(data.name);
-        setShowMessage(true);
         setUsername("");
         setPassword("");
+        handleLoginRedirect();
       } else {
-        setFailureMessage("Log in unsuccessful!");
-        setShowMessage(true);
+        throw new Error("Something went wrong.");
       }
     } catch (err) {
       console.log(err);
     }
+    loginContext.setIsLoading(false);
   };
 
   const handleUsernameChange = (event) => {
@@ -71,62 +72,65 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.message}>
-        {successMessage ? <Navigate to="/" /> : null}
-        {failureMessage && showMessage ? (
-          <Alert
-            variant="danger"
-            onClose={() => setShowMessage(false)}
-            dismissible
-          >
-            {failureMessage}
-          </Alert>
-        ) : null}
-      </div>
+      {loginContext.isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <>
+          <div className={styles.login}>
+            <br />
+            <h3>Log In</h3>
+            <br />
 
-      <br />
+            <Box component="form" onSubmit={handleSubmit}>
+              <TextField
+                required
+                fullWidth
+                id="outlined-required"
+                label="Email"
+                type="email"
+                autoComplete="current-email"
+                value={username}
+                onChange={handleUsernameChange}
+              />
+              <br /> <br />
+              <TextField
+                required
+                fullWidth
+                id="outlined-password-input"
+                label="Password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <br /> <br />
+              <Button variant="contained" type="submit" size="large" fullWidth>
+                Submit
+              </Button>
+              <hr />
+              <Button
+                variant="outlined"
+                size="large"
+                fullWidth
+                onClick={handleRegisterRedirect}
+              >
+                Create Account
+              </Button>
+            </Box>
 
-      <div className={styles.login}>
-        <h3>Log In</h3>
-        <br />
-
-        <Box component="form" onSubmit={handleSubmit} data-testid="form">
-          <TextField
-            required
-            fullWidth
-            id="outlined-required"
-            label="Username"
-            value={username}
-            onChange={handleUsernameChange}
-          />
-          <br /> <br />
-          <TextField
-            required
-            fullWidth
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          <br /> <br />
-          <Button variant="contained" type="submit" size="large" fullWidth>
-            Submit
-          </Button>
-          <hr />
-          <Button
-            variant="outlined"
-            size="large"
-            fullWidth
-            onClick={handleRegisterRedirect}
-          >
-            Create Account
-          </Button>
-        </Box>
-
-        <br />
-      </div>
+            <br />
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -71,7 +71,7 @@ const CreateUrl = () => {
           />
 
           <button className="btn btn-dark" type="submit">
-            Submit
+            Shorten
           </button>
         </div>
       </form>

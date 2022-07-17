@@ -90,72 +90,68 @@ const Profile = () => {
 
   return (
     <>
-      <div className={styles.message}>
-        {successMessage && showMessage ? (
-          <>
-            <Navigate to="/" />
-          </>
-        ) : null}
-        {failureMessage && showMessage ? (
-          <Alert
-            variant="danger"
-            onClose={() => setShowMessage(false)}
-            dismissible
-          >
-            {failureMessage}
-          </Alert>
-        ) : null}
-      </div>
-
-      <br />
-
-      <div className={styles.profile}>
-        <form onSubmit={handleSubmit}>
-          <h2>Update Profile</h2>
-          <Form.Group className="mb-3" controlId="formRegisterUsername">
-            <Form.Label>Username: </Form.Label>
-            <Form.Control
-              type="text"
-              name="username"
-              value={username}
-              disabled
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formRegisterPassword">
-            <Form.Label>Password: </Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Enter new password"
-              onChange={handlePasswordChange}
-              required
-            />
-          </Form.Group>
-
-          <hr />
-
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
-              <Form.Label>Name: </Form.Label>
+      <div className={styles.container}>
+        <div className={styles.profile}>
+          <form onSubmit={handleSubmit}>
+            <br />
+            <h2>Update Profile</h2>
+            <Form.Group className="mb-3" controlId="formRegisterUsername">
+              <Form.Label>Email: </Form.Label>
               <Form.Control
-                type="input"
-                name="name"
-                onChange={handleNameChange}
-                placeholder={name}
+                type="text"
+                name="username"
+                value={username}
+                disabled
               />
             </Form.Group>
-          </Row>
 
-          <button type="submit" className={styles.btn}>
-            Update
-          </button>
-        </form>
+            <Form.Group className="mb-3" controlId="formRegisterPassword">
+              <Form.Label>Password: </Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Enter new password"
+                onChange={handlePasswordChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formRegisterPassword2">
+              <Form.Label>Confirm Password: </Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Enter new password"
+                onChange={handlePasswordChange}
+                required
+              />
+            </Form.Group>
+
+            <hr />
+
+            <Row>
+              <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
+                <Form.Label>Name: </Form.Label>
+                <Form.Control
+                  type="input"
+                  name="name"
+                  onChange={handleNameChange}
+                  placeholder={name}
+                />
+              </Form.Group>
+            </Row>
+
+            <button type="submit" className={styles.btn}>
+              Update
+            </button>
+          </form>
+        </div>
+        <br />
+        <br />
+        <br />
       </div>
-      <br />
-      <br />
-      <br />
     </>
   );
 };

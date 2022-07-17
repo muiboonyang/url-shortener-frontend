@@ -15,6 +15,7 @@ const App = () => {
   const [profileName, setProfileName] = useState("");
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [renderCount, setRenderCount] = useState(0);
 
   return (
@@ -22,6 +23,8 @@ const App = () => {
       value={{
         profileName,
         setProfileName,
+        isLoading,
+        setIsLoading,
         loggedIn,
         setLoggedIn,
         user,

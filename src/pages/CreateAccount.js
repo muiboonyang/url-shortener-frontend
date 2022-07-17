@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Alert from "react-bootstrap/Alert";
+import LoginContext from "../context/login-context";
+
 import styles from "./CreateAccount.module.css";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const CreateAccount = () => {
+  const loginContext = useContext(LoginContext);
+
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-
-  const [successMessage, setSuccessMessage] = useState("");
-  const [failureMessage, setFailureMessage] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
 
   const navigate = useNavigate();
 
@@ -43,18 +43,19 @@ const CreateAccount = () => {
       console.log(data);
 
       if (res.status === 200) {
-        setSuccessMessage("Account created!");
-        setShowMessage(true);
         setUsername("");
         setPassword("");
         setName("");
       } else {
-        setFailureMessage("Account not created!");
-        setShowMessage(true);
+        throw new Error("Something went wrong.");
       }
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
   const handleUsernameChange = (event) => {
@@ -65,38 +66,82 @@ const CreateAccount = () => {
     setPassword(event.target.value);
   };
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
   return (
-    <>
-      <div className={styles.message}>
-        {successMessage && showMessage ? (
-          <Alert
-            variant="success"
-            onClose={() => setShowMessage(false)}
-            dismissible
-          >
-            {successMessage}
-          </Alert>
-        ) : null}
-        {failureMessage && showMessage ? (
-          <Alert
-            variant="danger"
-            onClose={() => setShowMessage(false)}
-            dismissible
-          >
-            {failureMessage}
-          </Alert>
-        ) : null}
-      </div>
+    <div className={styles.container}>
+      {loginContext.isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <>
+          <div className={styles.createAccount}>
+            <br />
+            <h3>Create Account</h3>
+            <br />
 
-      <div className={styles.createAccount}>
-        <h3>Create Account</h3>
-        <br />
+            <Box component="form" onSubmit={handleSubmit}>
+              <TextField
+                required
+                fullWidth
+                id="outlined-name"
+                label="Name"
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+              />
+              <br /> <br />
+              <TextField
+                required
+                fullWidth
+                id="outlined-email"
+                label="Email"
+                type="email"
+                value={username}
+                onChange={handleUsernameChange}
+              />
+              <br /> <br />
+              <TextField
+                required
+                fullWidth
+                id="outlined-password-input"
+                label="Password"
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <br /> <br />
+              <TextField
+                required
+                fullWidth
+                id="outlined-password-input2"
+                label="Confirm Password"
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <br /> <br />
+              <Button variant="contained" type="submit" size="large" fullWidth>
+                Submit
+              </Button>
+              <hr />
+              <Button
+                variant="outlined"
+                size="large"
+                fullWidth
+                onClick={handleLoginRedirect}
+              >
+                Create Account
+              </Button>
+            </Box>
 
-        <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formRegisterUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
@@ -154,11 +199,13 @@ const CreateAccount = () => {
               Already have an account? Click here to log in
             </button>
           </div>
-        </form>
+        </form> */}
 
-        <br />
-      </div>
-    </>
+            <br />
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

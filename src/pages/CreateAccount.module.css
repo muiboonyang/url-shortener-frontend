@@ -1,7 +1,6 @@
-.message {
-  margin-top: 50px;
-  font-size: 1.2em;
-  text-align: center;
+.container {
+  margin-top: 10px;
+  border-radius: 15px;
 }
 
 .createAccount {

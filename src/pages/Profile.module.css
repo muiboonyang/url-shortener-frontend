@@ -1,3 +1,8 @@
+.container {
+  margin-top: 10px;
+  border-radius: 15px;
+}
+
 .profile {
   margin: auto;
   width: 700px;
