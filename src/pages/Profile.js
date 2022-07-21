@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 
 const Profile = () => {
   const loginContext = useContext(LoginContext);
-  const { user } = loginContext;
+  const { user, renderCount } = loginContext;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,20 +23,26 @@ const Profile = () => {
   const url = `https://url-shortener-sg.herokuapp.com/users/${user}`;
 
   const getUserInfo = async () => {
+    loginContext.setIsLoading(true);
     try {
       const res = await fetch(url);
       const data = await res.json();
-      setUsername(data.username);
-      setName(data.name);
+      if (res.status === 200) {
+        setUsername(data.username);
+        setName(data.name);
+      } else {
+        throw new Error("Something went wrong.");
+      }
     } catch (err) {
       console.log(err);
     }
+    loginContext.setIsLoading(false);
   };
 
   useEffect(() => {
     getUserInfo();
     // eslint-disable-next-line
-  }, []);
+  }, [renderCount]);
 
   //================
   // Update current user
@@ -44,7 +50,7 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    loginContext.setIsLoading(true);
+
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/users/${user}/update`,
@@ -65,14 +71,14 @@ const Profile = () => {
 
       if (res.status === 200) {
         setPassword("");
-        setName("");
+        loginContext.setProfileName(name);
+        getUserInfo();
       } else {
         throw new Error("Something went wrong.");
       }
     } catch (err) {
       console.log(err);
     }
-    loginContext.setIsLoading(false);
   };
 
   const handlePasswordChange = (event) => {
@@ -139,7 +145,7 @@ const Profile = () => {
                 <TextField
                   required
                   fullWidth
-                  id="outlined"
+                  id="outlined-name"
                   label="Name"
                   type="text"
                   value={name}
