@@ -8,13 +8,13 @@
   width: 700px;
 }
 
-.profile h2 {
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
+.profile h3 {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
+  text-align: center;
 }
 
 .btn {

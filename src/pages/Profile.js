@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Navigate } from "react-router-dom";
 import LoginContext from "../context/login-context";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Alert from "react-bootstrap/Alert";
+
+// import Form from "react-bootstrap/Form";
+// import Row from "react-bootstrap/Row";
+// import Col from "react-bootstrap/Col";
+
 import styles from "./Profile.module.css";
+import LoadingSpinner from "../components/LoadingSpinner";
+
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const Profile = () => {
   const loginContext = useContext(LoginContext);
@@ -41,10 +46,6 @@ const Profile = () => {
   // Update current user
   //================
 
-  const [successMessage, setSuccessMessage] = useState("");
-  const [failureMessage, setFailureMessage] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -66,14 +67,11 @@ const Profile = () => {
       console.log(data);
 
       if (res.status === 200) {
-        setSuccessMessage("Account updated!");
-        setShowMessage(true);
         setPassword("");
         setName("");
         // loginContext.setLoggedIn(false);
       } else {
-        setFailureMessage("Account not updated!");
-        setShowMessage(true);
+        throw new Error("Something went wrong.");
       }
     } catch (err) {
       console.log(err);
@@ -91,66 +89,81 @@ const Profile = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.profile}>
-          <form onSubmit={handleSubmit}>
-            <br />
-            <h2>Update Profile</h2>
-            <Form.Group className="mb-3" controlId="formRegisterUsername">
-              <Form.Label>Email: </Form.Label>
-              <Form.Control
-                type="text"
-                name="username"
-                value={username}
-                disabled
-              />
-            </Form.Group>
+        {loginContext.isLoading ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <>
+            <div className={styles.profile}>
+              <br />
+              <h3>Update Profile</h3>
+              <br />
 
-            <Form.Group className="mb-3" controlId="formRegisterPassword">
-              <Form.Label>Password: </Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Enter new password"
-                onChange={handlePasswordChange}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formRegisterPassword2">
-              <Form.Label>Confirm Password: </Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Enter new password"
-                onChange={handlePasswordChange}
-                required
-              />
-            </Form.Group>
-
-            <hr />
-
-            <Row>
-              <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
-                <Form.Label>Name: </Form.Label>
-                <Form.Control
-                  type="input"
-                  name="name"
-                  onChange={handleNameChange}
-                  placeholder={name}
+              <Box component="form" onSubmit={handleSubmit}>
+                <TextField
+                  disabled
+                  fullWidth
+                  id="outlined"
+                  label="Email"
+                  type="email"
+                  value={username}
                 />
-              </Form.Group>
-            </Row>
-
-            <button type="submit" className={styles.btn}>
-              Update
-            </button>
-          </form>
-        </div>
-        <br />
-        <br />
-        <br />
+                <br /> <br />
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-password-input"
+                  label="New Password"
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <br /> <br />
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-password-input2"
+                  label="Confirm Password"
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <br /> <br />
+                <hr />
+                <br />
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined"
+                  label="Name"
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
+                />
+                <br /> <br />
+                <Button
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  fullWidth
+                >
+                  Update
+                </Button>
+              </Box>
+            </div>
+            <br />
+            <br />
+            <br />
+          </>
+        )}
       </div>
     </>
   );

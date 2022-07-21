@@ -46,6 +46,7 @@ const CreateAccount = () => {
         setUsername("");
         setPassword("");
         setName("");
+        handleLoginRedirect();
       } else {
         throw new Error("Something went wrong.");
       }
