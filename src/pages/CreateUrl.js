@@ -81,19 +81,26 @@ const CreateUrl = () => {
             <Box
               component="form"
               onSubmit={onSubmitQuery}
-              sx={{ display: "flex", flexDirection: "row" }}
+              sx={{ m: 1, display: "flex", flexDirection: "row" }}
+              autoComplete="off"
             >
               <TextField
                 required
                 fullWidth
+                variant="standard"
                 id="outlined"
                 label="URL"
                 type="url"
                 value={input}
                 onChange={handleSearchInput}
               />
-              <br /> <br />
-              <Button variant="contained" type="submit" size="large">
+
+              <Button
+                variant="contained"
+                size="small"
+                type="submit"
+                sx={{ ml: 5, py: 0 }}
+              >
                 Shorten
               </Button>
             </Box>
