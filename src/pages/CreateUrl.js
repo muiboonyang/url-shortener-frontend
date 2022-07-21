@@ -1,7 +1,13 @@
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import { useNavigate } from "react-router-dom";
+
 import styles from "./CreateUrl.module.css";
+import LoadingSpinner from "../components/LoadingSpinner";
+
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const CreateUrl = () => {
   const [input, setInput] = useState("");
@@ -12,6 +18,7 @@ const CreateUrl = () => {
   const navigate = useNavigate();
 
   const shortenUrl = async () => {
+    loginContext.setIsLoading(true);
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/urls/shortUrls`,
@@ -35,6 +42,7 @@ const CreateUrl = () => {
     } catch (err) {
       console.log(err);
     }
+    loginContext.setIsLoading(false);
   };
 
   const handleSearchInput = (e) => {
@@ -43,6 +51,7 @@ const CreateUrl = () => {
 
   const onSubmitQuery = (e) => {
     e.preventDefault();
+
     if (input.length > 0) {
       shortenUrl();
       setInput("");
@@ -52,29 +61,45 @@ const CreateUrl = () => {
 
   return (
     <div className={styles.container}>
-      <h3>Link Shortener</h3>
-
-      <form onSubmit={onSubmitQuery}>
-        <div className={styles.createUrl}>
-          <label htmlFor="fullUrl" className="sr-only">
-            Enter URL here:
-          </label>
-          <input
-            required
-            placeholder="URL"
-            type="url"
-            name="fullUrl"
-            id="fullUrl"
-            className="form-control"
-            value={input}
-            onChange={handleSearchInput}
-          />
-
-          <button className="btn btn-dark" type="submit">
-            Shorten
-          </button>
+      {loginContext.isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <LoadingSpinner />
         </div>
-      </form>
+      ) : (
+        <>
+          <br />
+          <h3>Link Shortener</h3>
+          <br />
+          <div className={styles.createUrl}>
+            <Box
+              component="form"
+              onSubmit={onSubmitQuery}
+              sx={{ display: "flex", flexDirection: "row" }}
+            >
+              <TextField
+                required
+                fullWidth
+                id="outlined"
+                label="URL"
+                type="url"
+                value={input}
+                onChange={handleSearchInput}
+              />
+              <br /> <br />
+              <Button variant="contained" type="submit" size="large">
+                Shorten
+              </Button>
+            </Box>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -23,6 +23,8 @@ const CreateAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    loginContext.setIsLoading(true);
+
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/users/new`,
@@ -53,6 +55,7 @@ const CreateAccount = () => {
     } catch (err) {
       console.log(err);
     }
+    loginContext.setIsLoading(false);
   };
 
   const handleNameChange = (event) => {

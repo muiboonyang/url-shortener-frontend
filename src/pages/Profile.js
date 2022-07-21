@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/login-context";
 
-// import Form from "react-bootstrap/Form";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
-
 import styles from "./Profile.module.css";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -48,6 +44,7 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    loginContext.setIsLoading(true);
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/users/${user}/update`,
@@ -69,13 +66,13 @@ const Profile = () => {
       if (res.status === 200) {
         setPassword("");
         setName("");
-        // loginContext.setLoggedIn(false);
       } else {
         throw new Error("Something went wrong.");
       }
     } catch (err) {
       console.log(err);
     }
+    loginContext.setIsLoading(false);
   };
 
   const handlePasswordChange = (event) => {

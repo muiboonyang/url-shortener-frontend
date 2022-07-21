@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import LoginContext from "../context/login-context";
 import styles from "./EditDisplay.module.css";
 
 const EditDisplay = (props) => {
   const [linkEdit, setLink] = useState(props.link);
   let { results, index } = props;
 
+  const loginContext = useContext(LoginContext);
+
   const editResult = async (shortId) => {
+    loginContext.setIsLoading(true);
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
@@ -34,6 +38,7 @@ const EditDisplay = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     editResult(results[index].short);
     props.toggleEditForm();
   };

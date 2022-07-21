@@ -23,8 +23,6 @@
 .createUrl {
   margin: auto;
   width: 70%;
-  display: flex;
-  flex-direction: row;
 }
 
 .container {

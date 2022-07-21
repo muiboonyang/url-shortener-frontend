@@ -20,6 +20,7 @@ const Display = () => {
   const { user, renderCount } = loginContext;
 
   const urlResults = async () => {
+    loginContext.setIsLoading(true);
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/urls/${user}`
@@ -30,6 +31,7 @@ const Display = () => {
     } catch (err) {
       console.log(err);
     }
+    loginContext.setIsLoading(false);
   };
 
   const delResult = async (shortId) => {
