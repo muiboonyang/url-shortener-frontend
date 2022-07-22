@@ -13,15 +13,6 @@ import ListIcon from "@mui/icons-material/List";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faSignOut,
-//   faLink,
-//   faUser,
-//   faGlobe,
-//   faList,
-// } from "@fortawesome/free-solid-svg-icons";
-
 const NavBar = () => {
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.user;
