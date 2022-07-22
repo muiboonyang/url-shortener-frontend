@@ -44,3 +44,7 @@
   text-align: center;
   padding-bottom: 30px;
 }
+
+.container table {
+  vertical-align: middle;
+}
