@@ -47,32 +47,45 @@ const EditDisplay = (props) => {
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      sx={{ m: 1, display: "flex", flexDirection: "row" }}
-      autoComplete="off"
-    >
-      <TextField
-        required
-        fullWidth
-        variant="filled"
-        id="outlined"
-        label="Edit URL"
-        type="url"
-        value={newLink}
-        onChange={handleLinkChange}
-      />
-
-      <Button
-        variant="contained"
-        size="small"
-        type="submit"
-        sx={{ ml: 5, py: 0 }}
+    <>
+      <br />
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ m: 1, display: "flex", flexDirection: "row" }}
+        autoComplete="off"
       >
-        Shorten
-      </Button>
-    </Box>
+        <TextField
+          required
+          fullWidth
+          variant="filled"
+          id="outlined"
+          label="Edit URL"
+          type="url"
+          value={newLink}
+          onChange={handleLinkChange}
+        />
+
+        <Button
+          variant="contained"
+          color="success"
+          size="small"
+          type="submit"
+          sx={{ ml: 2, py: 0 }}
+        >
+          Confirm
+        </Button>
+        <Button
+          variant="contained"
+          color="error"
+          size="small"
+          sx={{ ml: 2, py: 0 }}
+          onClick={props.toggleEditForm}
+        >
+          Cancel
+        </Button>
+      </Box>
+    </>
   );
 };
 

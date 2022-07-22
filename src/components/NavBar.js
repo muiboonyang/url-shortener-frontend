@@ -3,18 +3,24 @@ import React, { useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
-import styles from "./NavBar.module.css";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSignOut,
-  faLink,
-  faUser,
-  faGlobe,
-  faList,
-} from "@fortawesome/free-solid-svg-icons";
+import styles from "./NavBar.module.css";
+import IconButton from "@mui/material/IconButton";
+import LinkIcon from "@mui/icons-material/Link";
+import AddLinkIcon from "@mui/icons-material/AddLink";
+import ListIcon from "@mui/icons-material/List";
+import PersonIcon from "@mui/icons-material/Person";
+import LogoutIcon from "@mui/icons-material/Logout";
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faSignOut,
+//   faLink,
+//   faUser,
+//   faGlobe,
+//   faList,
+// } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = () => {
   const loginContext = useContext(LoginContext);
@@ -61,27 +67,44 @@ const NavBar = () => {
                   exact="true"
                   style={{ textShadow: "1px 0 grey" }}
                 >
-                  <FontAwesomeIcon icon={faLink} /> Link Shortener
+                  <IconButton style={{ color: "white" }}>
+                    <LinkIcon />
+                  </IconButton>
+                  Link Shortener
                 </NavLink>
               </Navbar.Brand>
 
               <Nav className="me-auto">
                 <NavLink to="/createurl" activeclassname={styles.active}>
-                  <FontAwesomeIcon icon={faGlobe} /> Create New Link
+                  <IconButton style={{ color: "white" }}>
+                    <AddLinkIcon />
+                  </IconButton>
+                  Create New Link
                 </NavLink>
                 <NavLink to="/myurls" activeclassname={styles.active}>
-                  <FontAwesomeIcon icon={faList} /> My Links
+                  <IconButton style={{ color: "white" }}>
+                    <ListIcon />
+                  </IconButton>
+                  My Links
                 </NavLink>
               </Nav>
 
               <div className={styles.loggedInContainer}>
                 <Nav>
                   <NavLink to="/profile" activeclassname={styles.active}>
-                    <FontAwesomeIcon icon={faUser} /> {profileName}
+                    <IconButton style={{ color: "white" }}>
+                      <PersonIcon />
+                    </IconButton>
+                    {profileName}
                   </NavLink>
 
                   <NavLink to="/">
-                    <FontAwesomeIcon icon={faSignOut} onClick={handleLogout} />
+                    <IconButton
+                      style={{ color: "white" }}
+                      onClick={handleLogout}
+                    >
+                      <LogoutIcon />
+                    </IconButton>
                   </NavLink>
                 </Nav>
               </div>
@@ -95,7 +118,10 @@ const NavBar = () => {
                     exact="true"
                     style={{ textShadow: "1px 0 grey" }}
                   >
-                    <FontAwesomeIcon icon={faLink} /> Link Shortener
+                    <IconButton style={{ color: "white" }}>
+                      <LinkIcon />
+                    </IconButton>
+                    Link Shortener
                   </NavLink>
                 </Navbar.Brand>
               </Nav>
@@ -103,7 +129,10 @@ const NavBar = () => {
               <div className={styles.loggedInContainer}>
                 <Nav>
                   <NavLink to="/login" activeclassname={styles.active}>
-                    <FontAwesomeIcon icon={faUser} /> Log In
+                    <IconButton style={{ color: "white" }}>
+                      <PersonIcon />
+                    </IconButton>
+                    Log In
                   </NavLink>
                 </Nav>
               </div>

@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/login-context";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCopy,
-  faTrash,
-  faPenToSquare,
-} from "@fortawesome/free-solid-svg-icons";
-import { v4 as uuidv4 } from "uuid";
-import styles from "./Display.module.css";
 import EditDisplay from "./EditDisplay";
+import { v4 as uuidv4 } from "uuid";
+
+import styles from "./Display.module.css";
+import IconButton from "@mui/material/IconButton";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Display = () => {
   const [results, setResults] = useState([]);
@@ -90,32 +89,38 @@ const Display = () => {
         <td>{url.clicks}</td>
 
         <td>
-          <FontAwesomeIcon
-            icon={faCopy}
+          <IconButton
+            aria-label="copy"
             onClick={() => {
               navigator.clipboard.writeText(
                 `https://url-shortener-sg.herokuapp.com/${url.short}`
               );
             }}
-          />
+          >
+            <ContentCopyIcon />
+          </IconButton>
         </td>
 
         <td>
-          <FontAwesomeIcon
-            icon={faPenToSquare}
+          <IconButton
+            aria-label="copy"
             onClick={() => {
               toggleEditForm(url.short);
             }}
-          />
+          >
+            <EditIcon />
+          </IconButton>
         </td>
 
         <td>
-          <FontAwesomeIcon
-            icon={faTrash}
+          <IconButton
+            aria-label="delete"
             onClick={() => {
               delResult(url.short);
             }}
-          />
+          >
+            <DeleteIcon />
+          </IconButton>
         </td>
       </tr>
     );
@@ -135,6 +140,7 @@ const Display = () => {
         ""
       )}
       <div className={styles.container}>
+        <br />
         <table className="table table-striped table-responsive">
           <thead>
             <tr>

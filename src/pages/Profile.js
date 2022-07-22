@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/login-context";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 import styles from "./Profile.module.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import LoadingSpinner from "../components/LoadingSpinner";
 
 const Profile = () => {
   const loginContext = useContext(LoginContext);
