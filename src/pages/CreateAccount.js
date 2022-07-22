@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginContext from "../context/login-context";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -14,6 +14,20 @@ const CreateAccount = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (password !== passwordConfirm) {
+      setErrorMessage("Passwords do not match!");
+    }
+  }, [password, passwordConfirm]);
+
+  useEffect(() => {
+    if (password === passwordConfirm && errorMessage) {
+      setErrorMessage("");
+    }
+  }, [password, passwordConfirm, errorMessage]);
 
   const navigate = useNavigate();
 
@@ -70,6 +84,10 @@ const CreateAccount = () => {
     setPassword(event.target.value);
   };
 
+  const handlePasswordConfirmChange = (event) => {
+    setPasswordConfirm(event.target.value);
+  };
+
   return (
     <div className={styles.container}>
       {loginContext.isLoading ? (
@@ -119,6 +137,8 @@ const CreateAccount = () => {
                 type="password"
                 value={password}
                 onChange={handlePasswordChange}
+                error={password !== passwordConfirm}
+                helperText={errorMessage}
               />
               <br /> <br />
               <TextField
@@ -127,8 +147,10 @@ const CreateAccount = () => {
                 id="outlined-password-input2"
                 label="Confirm Password"
                 type="password"
-                value={password}
-                onChange={handlePasswordChange}
+                value={passwordConfirm}
+                onChange={handlePasswordConfirmChange}
+                error={password !== passwordConfirm}
+                helperText={errorMessage}
               />
               <br /> <br />
               <Button
