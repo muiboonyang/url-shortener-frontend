@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 
-import styles from "./EditDisplay.module.css";
+// import styles from "./EditDisplay.module.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
