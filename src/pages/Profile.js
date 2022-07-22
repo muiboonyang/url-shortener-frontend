@@ -11,9 +11,23 @@ const Profile = () => {
   const loginContext = useContext(LoginContext);
   const { user, renderCount } = loginContext;
 
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (password !== passwordConfirm) {
+      setErrorMessage("Passwords do not match!");
+    }
+  }, [password, passwordConfirm]);
+
+  useEffect(() => {
+    if (password === passwordConfirm && errorMessage) {
+      setErrorMessage("");
+    }
+  }, [password, passwordConfirm, errorMessage]);
 
   //================
   // Fetch user data from API (by specific username)
@@ -80,12 +94,16 @@ const Profile = () => {
     }
   };
 
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const handlePasswordConfirmChange = (event) => {
+    setPasswordConfirm(event.target.value);
   };
 
   return (
@@ -120,7 +138,7 @@ const Profile = () => {
               <br />
               <hr />
 
-              <Box component="form" onSubmit={handleSubmit}>
+              <Box component="form" onSubmit={handleSubmit} autoComplete="off">
                 <TextField
                   disabled
                   fullWidth
@@ -138,6 +156,8 @@ const Profile = () => {
                   type="password"
                   value={password}
                   onChange={handlePasswordChange}
+                  error={password !== passwordConfirm}
+                  helperText={errorMessage}
                 />
                 <br /> <br />
                 <TextField
@@ -146,8 +166,10 @@ const Profile = () => {
                   id="outlined-password-input2"
                   label="Confirm Password"
                   type="password"
-                  value={password}
-                  onChange={handlePasswordChange}
+                  value={passwordConfirm}
+                  onChange={handlePasswordConfirmChange}
+                  error={password !== passwordConfirm}
+                  helperText={errorMessage}
                 />
                 <br /> <br />
                 <Button
