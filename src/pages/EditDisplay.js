@@ -1,10 +1,14 @@
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
+
 import styles from "./EditDisplay.module.css";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const EditDisplay = (props) => {
-  const [linkEdit, setLink] = useState(props.link);
   let { results, index } = props;
+  const [newLink, setNewlink] = useState(results[index].full);
 
   const loginContext = useContext(LoginContext);
 
@@ -19,7 +23,7 @@ const EditDisplay = (props) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            url: linkEdit,
+            url: newLink,
           }),
         }
       );
@@ -33,42 +37,42 @@ const EditDisplay = (props) => {
   };
 
   const handleLinkChange = (event) => {
-    setLink(event.target.value);
+    setNewlink(event.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     editResult(results[index].short);
     props.toggleEditForm();
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.createUrl}>
-        <label className={styles.label}>Edit long url: </label>
-        <input
-          className="form-control"
-          type="url"
-          name="fullUrl"
-          id="fullUrl"
-          onChange={handleLinkChange}
-          value={linkEdit}
-          placeholder={results[index].full}
-        />
-        <button className="btn btn-dark" type="submit">
-          Submit
-        </button>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ m: 1, display: "flex", flexDirection: "row" }}
+      autoComplete="off"
+    >
+      <TextField
+        required
+        fullWidth
+        variant="filled"
+        id="outlined"
+        label="Edit URL"
+        type="url"
+        value={newLink}
+        onChange={handleLinkChange}
+      />
 
-        <button
-          className="btn btn-outline-dark"
-          type="button"
-          onClick={props.toggleEditForm}
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
+      <Button
+        variant="contained"
+        size="small"
+        type="submit"
+        sx={{ ml: 5, py: 0 }}
+      >
+        Shorten
+      </Button>
+    </Box>
   );
 };
 
