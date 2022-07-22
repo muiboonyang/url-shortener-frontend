@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 
-// import styles from "./EditDisplay.module.css";
+import styles from "./EditDisplay.module.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -47,12 +47,16 @@ const EditDisplay = (props) => {
   };
 
   return (
-    <>
+    <div className={styles.editUrl}>
       <br />
       <Box
         component="form"
         onSubmit={handleSubmit}
-        sx={{ m: 1, display: "flex", flexDirection: "row" }}
+        sx={{
+          m: 1,
+          display: "flex",
+          flexDirection: "row",
+        }}
         autoComplete="off"
       >
         <TextField
@@ -68,24 +72,22 @@ const EditDisplay = (props) => {
 
         <Button
           variant="contained"
-          color="success"
           size="small"
           type="submit"
-          sx={{ ml: 2, py: 0 }}
+          sx={{ ml: 2, py: 0, bgcolor: "black" }}
         >
           Confirm
         </Button>
         <Button
-          variant="contained"
-          color="error"
+          variant="outlined"
           size="small"
-          sx={{ ml: 2, py: 0 }}
+          sx={{ ml: 2, py: 0, color: "gray" }}
           onClick={props.toggleEditForm}
         >
           Cancel
         </Button>
       </Box>
-    </>
+    </div>
   );
 };
 

@@ -74,7 +74,7 @@ const CreateUrl = () => {
       ) : (
         <>
           <br />
-          <h3>Link Shortener</h3>
+          <h3>Create Short Link</h3>
           <br />
           <div className={styles.createUrl}>
             <Box
@@ -98,9 +98,9 @@ const CreateUrl = () => {
                 variant="contained"
                 size="small"
                 type="submit"
-                sx={{ ml: 5, py: 0 }}
+                sx={{ ml: 5, py: 0, bgcolor: "black" }}
               >
-                Shorten
+                Submit
               </Button>
             </Box>
           </div>

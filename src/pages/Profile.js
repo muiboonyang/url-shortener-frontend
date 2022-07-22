@@ -108,6 +108,17 @@ const Profile = () => {
               <br />
               <h3>Update Profile</h3>
               <br />
+              <TextField
+                required
+                fullWidth
+                id="outlined-name"
+                label="Name"
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+              />
+              <br />
+              <hr />
 
               <Box component="form" onSubmit={handleSubmit}>
                 <TextField
@@ -139,23 +150,12 @@ const Profile = () => {
                   onChange={handlePasswordChange}
                 />
                 <br /> <br />
-                <hr />
-                <br />
-                <TextField
-                  required
-                  fullWidth
-                  id="outlined-name"
-                  label="Name"
-                  type="text"
-                  value={name}
-                  onChange={handleNameChange}
-                />
-                <br /> <br />
                 <Button
+                  fullWidth
                   variant="contained"
                   type="submit"
                   size="large"
-                  fullWidth
+                  sx={{ bgcolor: "black" }}
                 >
                   Update
                 </Button>

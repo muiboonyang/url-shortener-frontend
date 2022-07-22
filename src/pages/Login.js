@@ -112,7 +112,13 @@ const Login = () => {
                 onChange={handlePasswordChange}
               />
               <br /> <br />
-              <Button variant="contained" type="submit" size="large" fullWidth>
+              <Button
+                fullWidth
+                variant="contained"
+                type="submit"
+                size="large"
+                sx={{ bgcolor: "black" }}
+              >
                 Submit
               </Button>
               <hr />
@@ -121,6 +127,7 @@ const Login = () => {
                 size="large"
                 fullWidth
                 onClick={handleRegisterRedirect}
+                sx={{ color: "gray" }}
               >
                 Create Account
               </Button>

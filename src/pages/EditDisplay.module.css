@@ -1,10 +1,9 @@
-.form {
-  padding: 10px 20px;
+.editUrl {
   margin: auto;
-  text-align: center;
+  width: 70%;
 }
 
-.btn {
+/* .btn {
   background-color: rgb(85 85 85);
   border: 1px solid rgb(85 85 85);
   width: 100%;
@@ -20,27 +19,9 @@
   background-color: rgb(67, 172, 173);
   border: 1px solid rgb(67, 172, 173);
   color: black;
-}
-
-.label {
-  width: 200px;
-  font-size: 1em;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+} */
 
 .container {
   margin: auto;
   text-align: center;
-}
-
-.createUrl {
-  margin: auto;
-  width: 80%;
-  display: flex;
-  flex-direction: row;
 }

@@ -131,79 +131,26 @@ const CreateAccount = () => {
                 onChange={handlePasswordChange}
               />
               <br /> <br />
-              <Button variant="contained" type="submit" size="large" fullWidth>
+              <Button
+                fullWidth
+                variant="contained"
+                type="submit"
+                size="large"
+                sx={{ bgcolor: "black" }}
+              >
                 Submit
               </Button>
               <hr />
               <Button
+                fullWidth
                 variant="outlined"
                 size="large"
-                fullWidth
+                sx={{ color: "gray" }}
                 onClick={handleLoginRedirect}
               >
-                Create Account
+                Already have an account? Login here
               </Button>
             </Box>
-
-            {/* <form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formRegisterUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              name="username"
-              value={username}
-              placeholder="Enter username"
-              onChange={handleUsernameChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formRegisterPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Enter password"
-              onChange={handlePasswordChange}
-            />
-          </Form.Group>
-
-          <hr />
-
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="input"
-                name="name"
-                value={name}
-                placeholder="Enter name"
-                onChange={handleNameChange}
-                required
-              />
-            </Form.Group>
-          </Row>
-
-          <div className="d-grid gap-2">
-            <button className={styles.create} type="submit">
-              Submit
-            </button>
-          </div>
-
-          <hr />
-
-          <div className="d-grid gap-2">
-            <button
-              className={styles.login}
-              type="submit"
-              onClick={handleLoginRedirect}
-            >
-              Already have an account? Click here to log in
-            </button>
-          </div>
-        </form> */}
 
             <br />
           </div>
