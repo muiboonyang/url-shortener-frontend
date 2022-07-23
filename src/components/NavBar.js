@@ -1,9 +1,13 @@
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
-import LoginContext from "../context/login-context";
+
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import LoadingSpinner from "../components/LoadingSpinner";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loadingStatus } from "../redux/loadingSlice";
+import { logout } from "../redux/userSlice";
 
 import styles from "./NavBar.module.css";
 import IconButton from "@mui/material/IconButton";
@@ -14,9 +18,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const NavBar = () => {
-  const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.user;
-  const profileName = loginContext.profileName;
+  const isLoading = useSelector((state) => state.loading.isLoading);
+  const currentUser = useSelector((state) => state.user.username);
+  const profileName = useSelector((state) => state.user.name);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -26,7 +31,7 @@ const NavBar = () => {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    loginContext.setIsLoading(true);
+    dispatch(loadingStatus());
     try {
       const res = await fetch(
         "https://url-shortener-sg.herokuapp.com/sessions/logout"
@@ -34,8 +39,7 @@ const NavBar = () => {
       await res.json();
 
       if (res.status === 200) {
-        loginContext.setLoggedIn(false);
-        loginContext.setUser("");
+        dispatch(logout());
         handleLogoutRedirect();
       } else {
         throw new Error("Something went wrong.");
@@ -43,7 +47,7 @@ const NavBar = () => {
     } catch (err) {
       console.log(err);
     }
-    loginContext.setIsLoading(false);
+    dispatch(loadingStatus());
   };
 
   return (
@@ -132,7 +136,7 @@ const NavBar = () => {
         </Navbar>
       </div>
 
-      {loginContext.isLoading ? (
+      {isLoading ? (
         <div
           style={{
             display: "flex",

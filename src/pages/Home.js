@@ -3,6 +3,7 @@ import HomepageCarousel from "../components/HomepageCarousel";
 
 // import styles from "./Home.module.css";
 // import Button from "@mui/material/Button";
+// import Stack from "@mui/material/Stack";
 
 const Home = () => {
   // const seedUser = async () => {
@@ -11,7 +12,6 @@ const Home = () => {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json",
-  //         "Access-Control-Allow-Origin": "*",
   //       },
   //     });
   //   } catch (err) {
@@ -35,11 +35,11 @@ const Home = () => {
   return (
     <>
       <HomepageCarousel />
-      {/* <div className={styles.buttons}>
-        <Button onClick={seedUser} variant="dark" type="submit" size="sm">
+      {/* <div className={styles.container}>
+        <Button variant="contained" color="success" onClick={seedUser}>
           Seed Users
-        </Button>{" "}
-        <Button onClick={deleteUsers} variant="danger" type="submit" size="sm">
+        </Button>
+        <Button variant="contained" color="error" onClick={deleteUsers}>
           Delete Users
         </Button>
       </div> */}

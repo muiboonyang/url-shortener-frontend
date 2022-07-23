@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import LoginContext from "../context/login-context";
+import React, { useState, useEffect } from "react";
 import EditDisplay from "./EditDisplay";
 import { v4 as uuidv4 } from "uuid";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loadingStatus } from "../redux/loadingSlice";
 
 import styles from "./Display.module.css";
 import IconButton from "@mui/material/IconButton";
@@ -10,19 +12,19 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Display = () => {
+  const username = useSelector((state) => state.user.username);
+  const renderCount = useSelector((state) => state.render.renderCount);
+  const dispatch = useDispatch();
+
   const [results, setResults] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [index, setIndex] = useState("");
-  // console.log(results);
-
-  const loginContext = useContext(LoginContext);
-  const { user, renderCount } = loginContext;
 
   const urlResults = async () => {
-    loginContext.setIsLoading(true);
+    dispatch(loadingStatus());
     try {
       const res = await fetch(
-        `https://url-shortener-sg.herokuapp.com/urls/${user}`
+        `https://url-shortener-sg.herokuapp.com/urls/${username}`
       );
 
       const data = await res.json();
@@ -30,7 +32,7 @@ const Display = () => {
     } catch (err) {
       console.log(err);
     }
-    loginContext.setIsLoading(false);
+    dispatch(loadingStatus());
   };
 
   const delResult = async (shortId) => {

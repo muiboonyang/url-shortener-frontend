@@ -1,5 +1,7 @@
-import React, { useState, useContext } from "react";
-import LoginContext from "../context/login-context";
+import React, { useState } from "react";
+
+import { useDispatch } from "react-redux";
+import { loadingStatus } from "../redux/loadingSlice";
 
 import styles from "./EditDisplay.module.css";
 import Box from "@mui/material/Box";
@@ -7,13 +9,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const EditDisplay = (props) => {
+  const dispatch = useDispatch();
+
   let { results, index } = props;
   const [newLink, setNewlink] = useState(results[index].full);
 
-  const loginContext = useContext(LoginContext);
-
   const editResult = async (shortId) => {
-    loginContext.setIsLoading(true);
+    dispatch(loadingStatus());
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
@@ -34,6 +36,7 @@ const EditDisplay = (props) => {
     } catch (err) {
       console.log(err);
     }
+    dispatch(loadingStatus());
   };
 
   const handleLinkChange = (event) => {
