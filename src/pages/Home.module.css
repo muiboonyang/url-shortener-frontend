@@ -1,6 +1,10 @@
-.buttons {
-  margin: auto;
+.container {
   text-align: center;
-  padding-top: 10px;
+  bottom: 0%;
+  position: fixed;
+  width: 100%;
+}
 
+.container Button {
+  margin: 10px;
 }
