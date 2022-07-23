@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomepageCarousel.module.css";
 import Carousel from "react-bootstrap/Carousel";
-import LoginContext from "../context/login-context";
+
+import { useSelector } from "react-redux";
 
 const HomepageCarousel = () => {
-  let { user } = useContext(LoginContext);
+  const user = useSelector((state) => state.user.user);
+
   return (
     <>
       {user ? (

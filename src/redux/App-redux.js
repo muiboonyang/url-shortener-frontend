@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../store/main";
+import { userActions } from "./store";
 
 const Auth = () => {
   // Pointer to function whatever you are going to do (userActions -> login function)
