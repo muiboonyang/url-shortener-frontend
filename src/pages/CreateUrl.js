@@ -1,7 +1,10 @@
-import React, { useState, useContext } from "react";
-import LoginContext from "../context/login-context";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addRenderCount } from "../redux/renderSlice";
+import { loadingStatus } from "../redux/loadingSlice";
 
 import styles from "./CreateUrl.module.css";
 import Box from "@mui/material/Box";
@@ -11,13 +14,28 @@ import Button from "@mui/material/Button";
 const CreateUrl = () => {
   const [input, setInput] = useState("");
 
-  const loginContext = useContext(LoginContext);
-  let { user, setRenderCount, renderCount } = loginContext;
+  // Imports the 'isLoading' state from 'loading' slice
+  const isLoading = useSelector((state) => state.loading.isLoading);
+
+  // Imports the 'user' state from 'state' slice
+  const username = useSelector((state) => state.user.username);
+
+  const dispatch = useDispatch();
+
+  // Imports the 'loadingStatus' function from 'loading' slice
+  const toggleLoading = () => {
+    dispatch(loadingStatus());
+  };
+
+  // Imports the 'addRenderCount' function from 'render' slice
+  const addRender = () => {
+    dispatch(addRenderCount());
+  };
 
   const navigate = useNavigate();
 
   const shortenUrl = async () => {
-    loginContext.setIsLoading(true);
+    toggleLoading();
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/urls/shortUrls`,
@@ -27,7 +45,7 @@ const CreateUrl = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: user,
+            username: username,
             url: input,
           }),
         }
@@ -41,7 +59,7 @@ const CreateUrl = () => {
     } catch (err) {
       console.log(err);
     }
-    loginContext.setIsLoading(false);
+    toggleLoading();
   };
 
   const handleSearchInput = (e) => {
@@ -54,13 +72,13 @@ const CreateUrl = () => {
     if (input.length > 0) {
       shortenUrl();
       setInput("");
-      setRenderCount(renderCount + 1);
+      addRender();
     }
   };
 
   return (
     <div className={styles.container}>
-      {loginContext.isLoading ? (
+      {isLoading ? (
         <div
           style={{
             display: "flex",

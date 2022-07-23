@@ -2,9 +2,8 @@ import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-// import { loginStatusState } from "./redux/userSlice";
 
-// import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
@@ -13,13 +12,12 @@ import CreateUrl from "./pages/CreateUrl";
 import Display from "./pages/Display";
 
 const App = () => {
-  // const loggedIn = useSelector(loginStatusState);
-  const loggedIn = useSelector((state) => state.loggedIn);
+  const loggedIn = useSelector((state) => state.user.loggedIn);
 
   return (
     <>
       <BrowserRouter>
-        {/* <NavBar /> */}
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

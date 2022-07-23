@@ -6,14 +6,14 @@ const loadingSlice = createSlice({
     isLoading: false,
   },
   reducers: {
-    loading: (state) => {
-      state.isLoading = true;
+    loadingStatus: (state) => {
+      state.isLoading = !state.isLoading;
     },
   },
 });
 
 // Exports the redux actions
-export const { loding } = loadingSlice.actions;
+export const { loadingStatus } = loadingSlice.actions;
 
 // Exports the reducer
 export default loadingSlice.reducer;

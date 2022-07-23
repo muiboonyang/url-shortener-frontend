@@ -1,7 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginContext from "../context/login-context";
 import LoadingSpinner from "../components/LoadingSpinner";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loadingStatus } from "../redux/loadingSlice";
 
 import styles from "./CreateAccount.module.css";
 import Box from "@mui/material/Box";
@@ -9,7 +11,15 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const CreateAccount = () => {
-  const loginContext = useContext(LoginContext);
+  // Imports the 'isLoading' state from 'loading' slice
+  const isLoading = useSelector((state) => state.loading.isLoading);
+
+  const dispatch = useDispatch();
+
+  // Imports the 'loadingStatus' function from 'loading' slice
+  const toggleLoading = () => {
+    dispatch(loadingStatus());
+  };
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -37,7 +47,7 @@ const CreateAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    loginContext.setIsLoading(true);
+    toggleLoading();
 
     try {
       const res = await fetch(
@@ -69,7 +79,7 @@ const CreateAccount = () => {
     } catch (err) {
       console.log(err);
     }
-    loginContext.setIsLoading(false);
+    toggleLoading();
   };
 
   const handleNameChange = (event) => {
@@ -90,7 +100,7 @@ const CreateAccount = () => {
 
   return (
     <div className={styles.container}>
-      {loginContext.isLoading ? (
+      {isLoading ? (
         <div
           style={{
             display: "flex",

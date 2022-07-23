@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import LoginContext from "../context/login-context";
+import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loadingStatus } from "../redux/loadingSlice";
+import { update } from "../redux/userSlice";
 
 import styles from "./Profile.module.css";
 import Box from "@mui/material/Box";
@@ -8,8 +11,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const Profile = () => {
-  const loginContext = useContext(LoginContext);
-  const { user, renderCount } = loginContext;
+  // Imports the 'isLoading' state from 'loading' slice
+  const isLoading = useSelector((state) => state.loading.isLoading);
+  const storeUsername = useSelector((state) => state.user.username);
+  const renderCount = useSelector((state) => state.render.renderCount);
+
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -33,10 +40,10 @@ const Profile = () => {
   // Fetch user data from API (by specific username)
   //================
 
-  const url = `https://url-shortener-sg.herokuapp.com/users/${user}`;
+  const url = `https://url-shortener-sg.herokuapp.com/users/${storeUsername}`;
 
   const getUserInfo = async () => {
-    loginContext.setIsLoading(true);
+    dispatch(loadingStatus());
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -49,7 +56,7 @@ const Profile = () => {
     } catch (err) {
       console.log(err);
     }
-    loginContext.setIsLoading(false);
+    dispatch(loadingStatus());
   };
 
   useEffect(() => {
@@ -66,7 +73,7 @@ const Profile = () => {
 
     try {
       const res = await fetch(
-        `https://url-shortener-sg.herokuapp.com/users/${user}/update`,
+        `https://url-shortener-sg.herokuapp.com/users/${storeUsername}/update`,
         {
           method: "POST",
           headers: {
@@ -84,7 +91,7 @@ const Profile = () => {
 
       if (res.status === 200) {
         setPassword("");
-        loginContext.setProfileName(name);
+        dispatch(update(name));
         getUserInfo();
       } else {
         throw new Error("Something went wrong.");
@@ -109,7 +116,7 @@ const Profile = () => {
   return (
     <>
       <div className={styles.container}>
-        {loginContext.isLoading ? (
+        {isLoading ? (
           <div
             style={{
               display: "flex",

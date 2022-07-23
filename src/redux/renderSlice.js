@@ -6,14 +6,14 @@ const renderSlice = createSlice({
     renderCount: 0,
   },
   reducers: {
-    render: (state) => {
+    addRenderCount: (state) => {
       state.value += 1;
     },
   },
 });
 
 // Exports the redux actions
-export const { render } = renderSlice.actions;
+export const { addRenderCount } = renderSlice.actions;
 
 // Exports the reducer
 export default renderSlice.reducer;

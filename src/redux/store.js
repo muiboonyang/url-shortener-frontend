@@ -16,7 +16,7 @@ const reducers = combineReducers({
 
 ////////////////////////////////
 
-//to persist the store data even if user navigates away from the page
+// To persist the store data even if user navigates away from the page
 const persistConfig = {
   key: "root",
   storage,

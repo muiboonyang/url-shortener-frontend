@@ -6,11 +6,11 @@ import Carousel from "react-bootstrap/Carousel";
 import { useSelector } from "react-redux";
 
 const HomepageCarousel = () => {
-  const user = useSelector((state) => state.user.user);
+  const username = useSelector((state) => state.user.username);
 
   return (
     <>
-      {user ? (
+      {username ? (
         <Link to="/myurls">
           <Carousel
             className={styles.carousel}

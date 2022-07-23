@@ -1,5 +1,7 @@
-import React, { useState, useContext } from "react";
-import LoginContext from "../context/login-context";
+import React, { useState } from "react";
+
+import { useDispatch } from "react-redux";
+import { loadingStatus } from "../redux/loadingSlice";
 
 import styles from "./EditDisplay.module.css";
 import Box from "@mui/material/Box";
@@ -10,10 +12,15 @@ const EditDisplay = (props) => {
   let { results, index } = props;
   const [newLink, setNewlink] = useState(results[index].full);
 
-  const loginContext = useContext(LoginContext);
+  const dispatch = useDispatch();
+
+  // Imports the 'loadingStatus' function from 'loading' slice
+  const toggleLoading = () => {
+    dispatch(loadingStatus());
+  };
 
   const editResult = async (shortId) => {
-    loginContext.setIsLoading(true);
+    toggleLoading();
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
