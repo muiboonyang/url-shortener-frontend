@@ -11,15 +11,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const CreateAccount = () => {
-  // Imports the 'isLoading' state from 'loading' slice
   const isLoading = useSelector((state) => state.loading.isLoading);
-
   const dispatch = useDispatch();
-
-  // Imports the 'loadingStatus' function from 'loading' slice
-  const toggleLoading = () => {
-    dispatch(loadingStatus());
-  };
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -47,7 +40,7 @@ const CreateAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    toggleLoading();
+    dispatch(loadingStatus());
 
     try {
       const res = await fetch(
@@ -79,7 +72,7 @@ const CreateAccount = () => {
     } catch (err) {
       console.log(err);
     }
-    toggleLoading();
+    dispatch(loadingStatus());
   };
 
   const handleNameChange = (event) => {

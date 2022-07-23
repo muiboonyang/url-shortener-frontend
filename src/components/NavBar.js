@@ -21,12 +21,6 @@ const NavBar = () => {
   const isLoading = useSelector((state) => state.loading.isLoading);
   const currentUser = useSelector((state) => state.user.username);
   const profileName = useSelector((state) => state.user.name);
-  const loggedIn = useSelector((state) => state.user.loggedIn);
-
-  console.log(currentUser);
-  console.log(profileName);
-  console.log(loggedIn);
-
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

@@ -12,30 +12,16 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const CreateUrl = () => {
-  const [input, setInput] = useState("");
-
-  // Imports the 'isLoading' state from 'loading' slice
   const isLoading = useSelector((state) => state.loading.isLoading);
-
-  // Imports the 'user' state from 'state' slice
   const username = useSelector((state) => state.user.username);
-
   const dispatch = useDispatch();
 
-  // Imports the 'loadingStatus' function from 'loading' slice
-  const toggleLoading = () => {
-    dispatch(loadingStatus());
-  };
-
-  // Imports the 'addRenderCount' function from 'render' slice
-  const addRender = () => {
-    dispatch(addRenderCount());
-  };
+  const [input, setInput] = useState("");
 
   const navigate = useNavigate();
 
   const shortenUrl = async () => {
-    toggleLoading();
+    dispatch(loadingStatus());
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/urls/shortUrls`,
@@ -59,7 +45,7 @@ const CreateUrl = () => {
     } catch (err) {
       console.log(err);
     }
-    toggleLoading();
+    dispatch(loadingStatus());
   };
 
   const handleSearchInput = (e) => {
@@ -72,7 +58,7 @@ const CreateUrl = () => {
     if (input.length > 0) {
       shortenUrl();
       setInput("");
-      addRender();
+      dispatch(addRenderCount());
     }
   };
 

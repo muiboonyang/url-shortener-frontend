@@ -9,18 +9,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const EditDisplay = (props) => {
+  const dispatch = useDispatch();
+
   let { results, index } = props;
   const [newLink, setNewlink] = useState(results[index].full);
 
-  const dispatch = useDispatch();
-
-  // Imports the 'loadingStatus' function from 'loading' slice
-  const toggleLoading = () => {
-    dispatch(loadingStatus());
-  };
-
   const editResult = async (shortId) => {
-    toggleLoading();
+    dispatch(loadingStatus());
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/${shortId}/update`,
@@ -41,6 +36,7 @@ const EditDisplay = (props) => {
     } catch (err) {
       console.log(err);
     }
+    dispatch(loadingStatus());
   };
 
   const handleLinkChange = (event) => {

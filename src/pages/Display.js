@@ -12,22 +12,16 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Display = () => {
+  const username = useSelector((state) => state.user.username);
+  const renderCount = useSelector((state) => state.render.renderCount);
+  const dispatch = useDispatch();
+
   const [results, setResults] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [index, setIndex] = useState("");
 
-  const username = useSelector((state) => state.user.username);
-  const renderCount = useSelector((state) => state.render.renderCount);
-
-  const dispatch = useDispatch();
-
-  // Imports the 'loadingStatus' function from 'loading' slice
-  const toggleLoading = () => {
-    dispatch(loadingStatus());
-  };
-
   const urlResults = async () => {
-    toggleLoading();
+    dispatch(loadingStatus());
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/urls/${username}`
@@ -38,7 +32,7 @@ const Display = () => {
     } catch (err) {
       console.log(err);
     }
-    toggleLoading();
+    dispatch(loadingStatus());
   };
 
   const delResult = async (shortId) => {

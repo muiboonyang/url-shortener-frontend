@@ -5,7 +5,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingStatus } from "../redux/loadingSlice";
 import { login } from "../redux/userSlice";
-// import { update } from "../redux/userSlice";
 
 import styles from "./Login.module.css";
 import Box from "@mui/material/Box";
@@ -13,10 +12,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const Login = () => {
-  // Imports the 'isLoading' state from 'loading' slice
   const isLoading = useSelector((state) => state.loading.isLoading);
-  console.log(isLoading);
-
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
@@ -54,9 +50,7 @@ const Login = () => {
       const data = await res.json();
 
       if (res.status === 200) {
-        console.log(data);
         dispatch(login(data));
-
         setUsername("");
         setPassword("");
         handleLoginRedirect();

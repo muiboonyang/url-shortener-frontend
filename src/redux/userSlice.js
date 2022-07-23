@@ -19,7 +19,7 @@ const userSlice = createSlice({
       state.loggedIn = false;
     },
     update: (state, action) => {
-      state.name = action.payload.name;
+      state.name = action.payload;
     },
   },
 });
@@ -27,7 +27,7 @@ const userSlice = createSlice({
 // Exports the redux actions
 export const { login, logout, update } = userSlice.actions;
 
-// Export the states
+// Selector - Export the states
 export const nameState = (state) => state.user.name;
 export const usernameState = (state) => state.user.username;
 export const loginStatusState = (state) => state.user.loggedIn;

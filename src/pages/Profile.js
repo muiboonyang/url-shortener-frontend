@@ -11,11 +11,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const Profile = () => {
-  // Imports the 'isLoading' state from 'loading' slice
   const isLoading = useSelector((state) => state.loading.isLoading);
   const storeUsername = useSelector((state) => state.user.username);
   const renderCount = useSelector((state) => state.render.renderCount);
-
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
