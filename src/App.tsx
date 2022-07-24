@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-import { RootState } from "../redux/store";
+import { RootState } from "./redux/store";
 import { useSelector } from "react-redux";
 
 import NavBar from "./components/NavBar";

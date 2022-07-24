@@ -8,13 +8,21 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const EditDisplay = (props): JSX.Element => {
+type Props = {
+  shortId: string;
+  results: Array<any>;
+  index: number;
+  urlResults: Function;
+  toggleEditForm: Function;
+};
+
+const EditDisplay = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   let { results, index } = props;
   const [newLink, setNewlink] = useState(results[index].full);
 
-  const editResult = async (shortId) => {
+  const editResult = async (shortId: Props) => {
     dispatch(loadingStatus());
     try {
       const res = await fetch(
@@ -39,11 +47,11 @@ const EditDisplay = (props): JSX.Element => {
     dispatch(loadingStatus());
   };
 
-  const handleLinkChange = (event) => {
+  const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewlink(event.target.value);
   };
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     editResult(results[index].short);
     props.toggleEditForm();
@@ -85,7 +93,7 @@ const EditDisplay = (props): JSX.Element => {
           variant="outlined"
           size="small"
           sx={{ ml: 2, py: 0, color: "gray" }}
-          onClick={props.toggleEditForm}
+          onClick={() => props.toggleEditForm}
         >
           Cancel
         </Button>

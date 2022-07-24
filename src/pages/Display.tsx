@@ -12,6 +12,10 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+type Props = {
+  shortId: string;
+};
+
 const Display = (): JSX.Element => {
   const username = useSelector((state: RootState) => state.user.username);
   const renderCount = useSelector(
@@ -38,7 +42,7 @@ const Display = (): JSX.Element => {
     dispatch(loadingStatus());
   };
 
-  const delResult = async (shortId) => {
+  const delResult = async (shortId: Props) => {
     try {
       const res = await fetch(
         `https://url-shortener-sg.herokuapp.com/delete/${shortId}`,
@@ -57,7 +61,7 @@ const Display = (): JSX.Element => {
     }
   };
 
-  const toggleEditForm = (shortId) => {
+  const toggleEditForm = (shortId: Props) => {
     setIsEditing(!isEditing);
 
     const index = results.findIndex((object) => {

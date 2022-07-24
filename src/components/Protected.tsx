@@ -1,10 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { JsxElement } from "typescript";
 
 type Props = {
   isLoggedIn: boolean;
-  children: JsxElement;
+  children: JSX.Element;
 };
 
 const Protected = ({ isLoggedIn, children }: Props) => {

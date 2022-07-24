@@ -1,13 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export interface CounterState {
+  renderCount: number;
+}
+
+const initialState: CounterState = {
+  renderCount: 0,
+};
+
 const renderSlice = createSlice({
   name: "render",
-  initialState: {
-    renderCount: 0,
-  },
+  initialState,
   reducers: {
     addRenderCount: (state) => {
-      state.value += 1;
+      state.renderCount += 1;
     },
   },
 });
