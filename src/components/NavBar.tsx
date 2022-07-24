@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import Nav from "react-bootstrap/Nav";
@@ -23,6 +23,16 @@ import Alert from "@mui/material/Alert";
 
 const NavBar = () => {
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setMessage("");
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [message]);
 
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
   const currentUser = useSelector((state: RootState) => state.user.username);
@@ -73,13 +83,19 @@ const NavBar = () => {
               </Navbar.Brand>
 
               <Nav className="me-auto">
-                <NavLink to="/createurl" className={styles.active}>
+                <NavLink
+                  className={(navData) => (navData.isActive ? "active" : "")}
+                  to="/createurl"
+                >
                   <IconButton style={{ color: "white" }}>
                     <AddLinkIcon />
                   </IconButton>
                   Create New Link
                 </NavLink>
-                <NavLink to="/myurls" className={styles.active}>
+                <NavLink
+                  className={(navData) => (navData.isActive ? "active" : "")}
+                  to="/myurls"
+                >
                   <IconButton style={{ color: "white" }}>
                     <ListIcon />
                   </IconButton>
@@ -89,7 +105,10 @@ const NavBar = () => {
 
               <div className={styles.loggedInContainer}>
                 <Nav>
-                  <NavLink to="/profile" className={styles.active}>
+                  <NavLink
+                    className={(navData) => (navData.isActive ? "active" : "")}
+                    to="/profile"
+                  >
                     <IconButton style={{ color: "white" }}>
                       <PersonIcon />
                     </IconButton>
@@ -122,7 +141,10 @@ const NavBar = () => {
 
               <div className={styles.loggedInContainer}>
                 <Nav>
-                  <NavLink to="/login" className={styles.active}>
+                  <NavLink
+                    className={(navData) => (navData.isActive ? "active" : "")}
+                    to="/login"
+                  >
                     <IconButton style={{ color: "white" }}>
                       <PersonIcon />
                     </IconButton>

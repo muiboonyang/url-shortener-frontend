@@ -29,10 +29,8 @@
   border-bottom: 2px solid rgb(0, 0, 0);
 }
 
-/* Navbar links on mouse-over */
-.navbar a:hover {
-  border-bottom: 2px solid rgb(255, 255, 255);
-  color: white;
+.loggedInContainer a {
+  margin-right: 15px;
 }
 
 .logoutButton {
@@ -41,55 +39,12 @@
   border: none;
 }
 
-.message {
-  font-size: 1.2em;
-  text-align: center;
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  border-bottom: 2px solid rgb(255, 255, 255);
+  color: white;
 }
 
 .navbar .active {
   border-bottom: 2px solid rgb(255, 255, 255);
-}
-
-/* .balance {
-  margin-right: 20px;
-} */
-
-.loggedInContainer a {
-  margin-right: 15px;
-}
-
-/* CSS for dropdown menu */
-
-.dropdown {
-  width: 150px;
-}
-
-.dropdownHeader {
-  background-color: rgb(0, 0, 0);
-  padding: 10;
-  text-transform: uppercase;
-  text-align: center;
-  width: 150px;
-}
-
-.dropdownMenu {
-  background-color: rgb(0, 0, 0);
-  padding: 0;
-}
-
-.dropdownMenu a {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.dropdownMenu a:hover {
-  background-color: rgb(161, 161, 161);
-  border: none;
-}
-
-.dropdownMenu button {
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  font-size: 15px;
 }

@@ -23,9 +23,9 @@ const Display = (): JSX.Element => {
   );
   const dispatch = useDispatch();
 
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<any[]>([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [index, setIndex] = useState("");
+  const [selectedIndex, setIndex] = useState(0);
 
   const urlResults = async () => {
     dispatch(loadingStatus());
@@ -64,10 +64,10 @@ const Display = (): JSX.Element => {
   const toggleEditForm = (shortId: Props) => {
     setIsEditing(!isEditing);
 
-    const index = results.findIndex((object) => {
+    const targetIndex = results.findIndex((object) => {
       return object.short === shortId;
     });
-    setIndex(index);
+    setIndex(targetIndex);
   };
 
   useEffect(() => {
@@ -139,11 +139,10 @@ const Display = (): JSX.Element => {
     <>
       {isEditing ? (
         <EditDisplay
-          longurl={results.full}
           toggleEditForm={toggleEditForm}
           results={results}
           urlResults={urlResults}
-          index={index}
+          selectedIndex={selectedIndex}
         />
       ) : (
         ""

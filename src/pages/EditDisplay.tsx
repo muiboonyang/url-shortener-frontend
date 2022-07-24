@@ -9,20 +9,23 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 type Props = {
-  shortId: string;
   results: Array<any>;
-  index: number;
+  selectedIndex: number;
   urlResults: Function;
   toggleEditForm: Function;
+};
+
+type Props2 = {
+  shortId: string;
 };
 
 const EditDisplay = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  let { results, index } = props;
-  const [newLink, setNewlink] = useState(results[index].full);
+  let { results, selectedIndex } = props;
+  const [newLink, setNewlink] = useState(results[selectedIndex].full);
 
-  const editResult = async (shortId: Props) => {
+  const editResult = async (shortId: Props2) => {
     dispatch(loadingStatus());
     try {
       const res = await fetch(
@@ -53,7 +56,7 @@ const EditDisplay = (props: Props): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    editResult(results[index].short);
+    editResult(results[selectedIndex].short);
     props.toggleEditForm();
   };
 
