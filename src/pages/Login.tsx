@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
 
+import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingStatus } from "../redux/loadingSlice";
 import { login } from "../redux/userSlice";
@@ -11,8 +12,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const Login = () => {
-  const isLoading = useSelector((state) => state.loading.isLoading);
+const Login = (): JSX.Element => {
+  const isLoading = useSelector((state: RootState) => state.loading.isLoading);
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
@@ -28,7 +29,7 @@ const Login = () => {
     navigate("/createurl");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(loadingStatus());
 
@@ -63,11 +64,11 @@ const Login = () => {
     dispatch(loadingStatus());
   };
 
-  const handleUsernameChange = (event) => {
+  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
 
+import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingStatus } from "../redux/loadingSlice";
 
@@ -10,8 +11,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const CreateAccount = () => {
-  const isLoading = useSelector((state) => state.loading.isLoading);
+const CreateAccount = (): JSX.Element => {
+  const isLoading = useSelector((state: RootState) => state.loading.isLoading);
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -38,7 +39,7 @@ const CreateAccount = () => {
     navigate("/login");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(loadingStatus());
 
@@ -75,19 +76,21 @@ const CreateAccount = () => {
     dispatch(loadingStatus());
   };
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const handleUsernameChange = (event) => {
+  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const handlePasswordConfirmChange = (event) => {
+  const handlePasswordConfirmChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setPasswordConfirm(event.target.value);
   };
 

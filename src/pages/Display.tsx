@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EditDisplay from "./EditDisplay";
 import { v4 as uuidv4 } from "uuid";
 
+import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingStatus } from "../redux/loadingSlice";
 
@@ -11,9 +12,11 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const Display = () => {
-  const username = useSelector((state) => state.user.username);
-  const renderCount = useSelector((state) => state.render.renderCount);
+const Display = (): JSX.Element => {
+  const username = useSelector((state: RootState) => state.user.username);
+  const renderCount = useSelector(
+    (state: RootState) => state.render.renderCount
+  );
   const dispatch = useDispatch();
 
   const [results, setResults] = useState([]);

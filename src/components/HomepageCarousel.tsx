@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./HomepageCarousel.module.css";
 import Carousel from "react-bootstrap/Carousel";
 
+import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 
 const HomepageCarousel = () => {
-  const username = useSelector((state) => state.user.username);
+  const username = useSelector((state: RootState) => state.user.username);
 
   return (
     <>

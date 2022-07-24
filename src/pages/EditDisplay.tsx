@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const EditDisplay = (props) => {
+const EditDisplay = (props): JSX.Element => {
   const dispatch = useDispatch();
 
   let { results, index } = props;
@@ -43,7 +43,7 @@ const EditDisplay = (props) => {
     setNewlink(event.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: Event) => {
     e.preventDefault();
     editResult(results[index].short);
     props.toggleEditForm();

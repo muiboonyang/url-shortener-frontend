@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 
+import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingStatus } from "../redux/loadingSlice";
 import { update } from "../redux/userSlice";
@@ -10,10 +11,12 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const Profile = () => {
-  const isLoading = useSelector((state) => state.loading.isLoading);
-  const storeUsername = useSelector((state) => state.user.username);
-  const renderCount = useSelector((state) => state.render.renderCount);
+const Profile = (): JSX.Element => {
+  const isLoading = useSelector((state: RootState) => state.loading.isLoading);
+  const storeUsername = useSelector((state: RootState) => state.user.username);
+  const renderCount = useSelector(
+    (state: RootState) => state.render.renderCount
+  );
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -66,7 +69,7 @@ const Profile = () => {
   // Update current user
   //================
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
@@ -99,15 +102,17 @@ const Profile = () => {
     }
   };
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const handlePasswordConfirmChange = (event) => {
+  const handlePasswordConfirmChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setPasswordConfirm(event.target.value);
   };
 

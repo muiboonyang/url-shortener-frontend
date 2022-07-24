@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
 
+import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { addRenderCount } from "../redux/renderSlice";
 import { loadingStatus } from "../redux/loadingSlice";
@@ -11,9 +12,9 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const CreateUrl = () => {
-  const isLoading = useSelector((state) => state.loading.isLoading);
-  const username = useSelector((state) => state.user.username);
+const CreateUrl = (): JSX.Element => {
+  const isLoading = useSelector((state: RootState) => state.loading.isLoading);
+  const username = useSelector((state: RootState) => state.user.username);
   const dispatch = useDispatch();
 
   const [input, setInput] = useState("");
@@ -48,11 +49,11 @@ const CreateUrl = () => {
     dispatch(loadingStatus());
   };
 
-  const handleSearchInput = (e) => {
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const onSubmitQuery = (e) => {
+  const onSubmitQuery = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (input.length > 0) {

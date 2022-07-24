@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
+import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 
 import NavBar from "./components/NavBar";
@@ -13,7 +14,7 @@ import CreateUrl from "./pages/CreateUrl";
 import Display from "./pages/Display";
 
 const App = () => {
-  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const loggedIn = useSelector((state: RootState) => state.user.loggedIn);
 
   return (
     <>

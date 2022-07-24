@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { RootState } from "./store";
 
 const userSlice = createSlice({
   name: "user",
@@ -28,9 +29,9 @@ const userSlice = createSlice({
 export const { login, logout, update } = userSlice.actions;
 
 // Selector - Export the states
-export const nameState = (state) => state.user.name;
-export const usernameState = (state) => state.user.username;
-export const loginStatusState = (state) => state.user.loggedIn;
+export const nameState = (state: RootState) => state.user.name;
+export const usernameState = (state: RootState) => state.user.username;
+export const loginStatusState = (state: RootState) => state.user.loggedIn;
 
 // Exports the reducer
 export default userSlice.reducer;

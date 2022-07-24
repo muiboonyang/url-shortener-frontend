@@ -3,8 +3,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "./LoadingSpinner";
 
+import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingStatus } from "../redux/loadingSlice";
 import { logout } from "../redux/userSlice";
@@ -23,9 +24,9 @@ import Alert from "@mui/material/Alert";
 const NavBar = () => {
   const [message, setMessage] = useState("");
 
-  const isLoading = useSelector((state) => state.loading.isLoading);
-  const currentUser = useSelector((state) => state.user.username);
-  const profileName = useSelector((state) => state.user.name);
+  const isLoading = useSelector((state: RootState) => state.loading.isLoading);
+  const currentUser = useSelector((state: RootState) => state.user.username);
+  const profileName = useSelector((state: RootState) => state.user.name);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const NavBar = () => {
     navigate("/login");
   };
 
-  const handleLogout = async (e) => {
+  const handleLogout = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(loadingStatus());
     try {
@@ -63,11 +64,7 @@ const NavBar = () => {
           {currentUser ? (
             <>
               <Navbar.Brand>
-                <NavLink
-                  to="/"
-                  exact="true"
-                  style={{ textShadow: "1px 0 grey" }}
-                >
+                <NavLink to="/" style={{ textShadow: "1px 0 grey" }}>
                   <IconButton style={{ color: "white" }}>
                     <LinkIcon />
                   </IconButton>
@@ -76,13 +73,13 @@ const NavBar = () => {
               </Navbar.Brand>
 
               <Nav className="me-auto">
-                <NavLink to="/createurl" activeclassname={styles.active}>
+                <NavLink to="/createurl" className={styles.active}>
                   <IconButton style={{ color: "white" }}>
                     <AddLinkIcon />
                   </IconButton>
                   Create New Link
                 </NavLink>
-                <NavLink to="/myurls" activeclassname={styles.active}>
+                <NavLink to="/myurls" className={styles.active}>
                   <IconButton style={{ color: "white" }}>
                     <ListIcon />
                   </IconButton>
@@ -92,7 +89,7 @@ const NavBar = () => {
 
               <div className={styles.loggedInContainer}>
                 <Nav>
-                  <NavLink to="/profile" activeclassname={styles.active}>
+                  <NavLink to="/profile" className={styles.active}>
                     <IconButton style={{ color: "white" }}>
                       <PersonIcon />
                     </IconButton>
@@ -114,11 +111,7 @@ const NavBar = () => {
             <>
               <Nav className="me-auto">
                 <Navbar.Brand>
-                  <NavLink
-                    to="/"
-                    exact="true"
-                    style={{ textShadow: "1px 0 grey" }}
-                  >
+                  <NavLink to="/" style={{ textShadow: "1px 0 grey" }}>
                     <IconButton style={{ color: "white" }}>
                       <LinkIcon />
                     </IconButton>
@@ -129,7 +122,7 @@ const NavBar = () => {
 
               <div className={styles.loggedInContainer}>
                 <Nav>
-                  <NavLink to="/login" activeclassname={styles.active}>
+                  <NavLink to="/login" className={styles.active}>
                     <IconButton style={{ color: "white" }}>
                       <PersonIcon />
                     </IconButton>
