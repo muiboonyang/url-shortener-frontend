@@ -54,10 +54,14 @@ const EditDisplay = (props: Props): JSX.Element => {
     setNewlink(event.target.value);
   };
 
+  const toggleEditForm = () => {
+    props.toggleEditForm();
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     editResult(results[selectedIndex].short);
-    props.toggleEditForm();
+    toggleEditForm();
   };
 
   return (
@@ -96,7 +100,7 @@ const EditDisplay = (props: Props): JSX.Element => {
           variant="outlined"
           size="small"
           sx={{ ml: 2, py: 0, color: "gray" }}
-          onClick={() => props.toggleEditForm}
+          onClick={toggleEditForm}
         >
           Cancel
         </Button>
