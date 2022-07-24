@@ -4,6 +4,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import NavBar from "./components/NavBar";
+import Protected from "./components/Protected";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
@@ -23,13 +24,32 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<CreateAccount />} />
 
-          {loggedIn ? (
-            <React.Fragment>
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/createurl" element={<CreateUrl />} />
-              <Route path="/myurls" element={<Display />} />
-            </React.Fragment>
-          ) : null}
+          <React.Fragment>
+            <Route
+              path="/profile"
+              element={
+                <Protected isLoggedIn={loggedIn}>
+                  <Profile />
+                </Protected>
+              }
+            />
+            <Route
+              path="/createurl"
+              element={
+                <Protected isLoggedIn={loggedIn}>
+                  <CreateUrl />
+                </Protected>
+              }
+            />
+            <Route
+              path="/myurls"
+              element={
+                <Protected isLoggedIn={loggedIn}>
+                  <Display />
+                </Protected>
+              }
+            />
+          </React.Fragment>
         </Routes>
       </BrowserRouter>
     </>
