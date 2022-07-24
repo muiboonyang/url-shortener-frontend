@@ -11,7 +11,22 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+import Stack from "@mui/material/Stack";
+import Alert from "@mui/material/Alert";
+
 const Profile = (): JSX.Element => {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setMessage("");
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [message]);
+
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
   const storeUsername = useSelector((state: RootState) => state.user.username);
   const renderCount = useSelector(
@@ -92,6 +107,7 @@ const Profile = (): JSX.Element => {
 
       if (res.status === 200) {
         setPassword("");
+        setMessage(data.message);
         dispatch(update(name));
         getUserInfo();
       } else {
@@ -132,6 +148,24 @@ const Profile = (): JSX.Element => {
           </div>
         ) : (
           <>
+            {message ? (
+              <Stack
+                sx={{ width: "100%" }}
+                direction="row"
+                justifyContent="flex-end"
+                alignItems="flex-start"
+                spacing={2}
+              >
+                <Alert
+                  onClose={() => {
+                    setMessage("");
+                  }}
+                >
+                  {message}
+                </Alert>
+              </Stack>
+            ) : null}
+
             <div className={styles.profile}>
               <br />
               <h3>Update Profile</h3>

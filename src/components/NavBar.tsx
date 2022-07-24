@@ -27,7 +27,7 @@ const NavBar = () => {
   useEffect(() => {
     const timeId = setTimeout(() => {
       setMessage("");
-    }, 2000);
+    }, 3000);
 
     return () => {
       clearTimeout(timeId);
