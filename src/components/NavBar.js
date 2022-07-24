@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import Nav from "react-bootstrap/Nav";
@@ -17,7 +17,12 @@ import ListIcon from "@mui/icons-material/List";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 
+import Stack from "@mui/material/Stack";
+import Alert from "@mui/material/Alert";
+
 const NavBar = () => {
+  const [message, setMessage] = useState("");
+
   const isLoading = useSelector((state) => state.loading.isLoading);
   const currentUser = useSelector((state) => state.user.username);
   const profileName = useSelector((state) => state.user.name);
@@ -36,11 +41,12 @@ const NavBar = () => {
       const res = await fetch(
         "https://url-shortener-sg.herokuapp.com/sessions/logout"
       );
-      await res.json();
+      const data = await res.json();
 
       if (res.status === 200) {
         dispatch(logout());
         handleLogoutRedirect();
+        setMessage(data.message);
       } else {
         throw new Error("Something went wrong.");
       }
@@ -135,6 +141,24 @@ const NavBar = () => {
           )}
         </Navbar>
       </div>
+
+      {message ? (
+        <Stack
+          sx={{ width: "100%" }}
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="flex-start"
+          spacing={2}
+        >
+          <Alert
+            onClose={() => {
+              setMessage("");
+            }}
+          >
+            {message}
+          </Alert>
+        </Stack>
+      ) : null}
 
       {isLoading ? (
         <div
