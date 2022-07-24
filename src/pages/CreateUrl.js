@@ -38,7 +38,7 @@ const CreateUrl = () => {
       );
 
       const data = await res.json();
-      if (data.status === "ok") {
+      if (res.status === 200) {
         console.log(data.message);
         navigate("/myurls");
       }
