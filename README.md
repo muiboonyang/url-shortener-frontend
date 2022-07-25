@@ -1,7 +1,4 @@
 # Link Shortener App
-
-Made for GT-ACE
-
 <h2>Introduction</h2>
 A link shortener app made using the MERN stack (MongoDB, Express React, Node), with Material UI, TypeScript and Redux Toolkit.
 <br>This app is hosted on Netlify and Heroku
