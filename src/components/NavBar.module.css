@@ -1,50 +1,42 @@
 /* Formatting for navigation bar */
 
+/* 
 .navbar {
+  font-family: "Montserrat", sans-serif;
   width: 100%;
   position: relative;
   height: auto;
   overflow: visible;
   padding: 15px;
   background-color: black;
-  font-family: "Montserrat", sans-serif;
-  z-index: 2;
-  /* box-shadow: 0 1px 1000px darkgray; */
-  /* z-index: 0; */
-}
+  z-index: 2; 
+} */
 
-/* Navbar links */
-.navbar a {
+/* .navbar a {
   color: #c9c5c2;
-  float: left;
   text-align: center;
   text-decoration: none;
-  font-size: 17px;
-  margin-left: 15px;
-  margin-right: 15px;
-  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  transition: transform 0.5s;
-  border-bottom: 2px solid rgb(0, 0, 0);
-}
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 0.1rem; 
+} */
 
-.loggedInContainer a {
+/* .loggedInContainer a {
   margin-right: 15px;
-}
+} */
 
-.logoutButton {
+/* .logoutButton {
   background-color: black;
   color: white;
   border: none;
-}
+} */
 
-/* Navbar links on mouse-over */
-.navbar a:hover {
+/* .navbar a:hover {
   border-bottom: 2px solid rgb(255, 255, 255);
   color: white;
 }
 
 .navbar .active {
   border-bottom: 2px solid rgb(255, 255, 255);
-}
+} */
