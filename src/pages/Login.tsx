@@ -8,6 +8,7 @@ import { loadingStatus } from "../redux/loadingSlice";
 import { login } from "../redux/userSlice";
 
 import styles from "./Login.module.css";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -88,55 +89,57 @@ const Login = (): JSX.Element => {
       ) : (
         <>
           <div className={styles.login}>
-            <br />
-            <h3>Log In</h3>
-            <br />
+            <Container maxWidth="sm">
+              <Box>
+                <br />
+                <h3>Log In</h3>
+                <br />
+              </Box>
 
-            <Box component="form" onSubmit={handleSubmit}>
-              <TextField
-                required
-                fullWidth
-                id="outlined-required"
-                label="Email"
-                type="email"
-                autoComplete="current-email"
-                value={username}
-                onChange={handleUsernameChange}
-              />
-              <br /> <br />
-              <TextField
-                required
-                fullWidth
-                id="outlined-password-input"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-              <br /> <br />
-              <Button
-                fullWidth
-                variant="contained"
-                type="submit"
-                size="large"
-                sx={{ bgcolor: "black" }}
-              >
-                Submit
-              </Button>
-              <hr />
-              <Button
-                variant="outlined"
-                size="large"
-                fullWidth
-                onClick={handleRegisterRedirect}
-                sx={{ color: "gray" }}
-              >
-                Create Account
-              </Button>
-            </Box>
-
-            <br />
+              <Box component="form" onSubmit={handleSubmit}>
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-required"
+                  label="Email"
+                  type="email"
+                  autoComplete="current-email"
+                  value={username}
+                  onChange={handleUsernameChange}
+                />
+                <br /> <br />
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-password-input"
+                  label="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <br /> <br />
+                <Button
+                  fullWidth
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  sx={{ bgcolor: "black" }}
+                >
+                  Submit
+                </Button>
+                <hr />
+                <Button
+                  variant="outlined"
+                  size="large"
+                  fullWidth
+                  onClick={handleRegisterRedirect}
+                  sx={{ color: "gray" }}
+                >
+                  Create Account
+                </Button>
+              </Box>
+            </Container>
           </div>
         </>
       )}

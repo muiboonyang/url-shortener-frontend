@@ -7,6 +7,7 @@ import { loadingStatus } from "../redux/loadingSlice";
 import { update } from "../redux/userSlice";
 
 import styles from "./Profile.module.css";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -167,69 +168,75 @@ const Profile = (): JSX.Element => {
             ) : null}
 
             <div className={styles.profile}>
-              <br />
-              <h3>Update Profile</h3>
-              <br />
-              <TextField
-                required
-                fullWidth
-                id="outlined-name"
-                label="Name"
-                type="text"
-                value={name}
-                onChange={handleNameChange}
-              />
-              <br />
-              <hr />
+              <Container maxWidth="sm">
+                <Box>
+                  <br />
+                  <h3>Update Profile</h3>
+                  <br />
+                </Box>
 
-              <Box component="form" onSubmit={handleSubmit} autoComplete="off">
-                <TextField
-                  disabled
-                  fullWidth
-                  id="outlined"
-                  label="Email"
-                  type="email"
-                  value={username}
-                />
-                <br /> <br />
                 <TextField
                   required
                   fullWidth
-                  id="outlined-password-input"
-                  label="New Password"
-                  type="password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  error={password !== passwordConfirm}
-                  helperText={errorMessage}
+                  id="outlined-name"
+                  label="Name"
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
                 />
-                <br /> <br />
-                <TextField
-                  required
-                  fullWidth
-                  id="outlined-password-input2"
-                  label="Confirm Password"
-                  type="password"
-                  value={passwordConfirm}
-                  onChange={handlePasswordConfirmChange}
-                  error={password !== passwordConfirm}
-                  helperText={errorMessage}
-                />
-                <br /> <br />
-                <Button
-                  fullWidth
-                  variant="contained"
-                  type="submit"
-                  size="large"
-                  sx={{ bgcolor: "black" }}
+                <br />
+                <hr />
+
+                <Box
+                  component="form"
+                  onSubmit={handleSubmit}
+                  autoComplete="off"
                 >
-                  Update
-                </Button>
-              </Box>
+                  <TextField
+                    disabled
+                    fullWidth
+                    id="outlined"
+                    label="Email"
+                    type="email"
+                    value={username}
+                  />
+                  <br /> <br />
+                  <TextField
+                    required
+                    fullWidth
+                    id="outlined-password-input"
+                    label="New Password"
+                    type="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    error={password !== passwordConfirm}
+                    helperText={errorMessage}
+                  />
+                  <br /> <br />
+                  <TextField
+                    required
+                    fullWidth
+                    id="outlined-password-input2"
+                    label="Confirm Password"
+                    type="password"
+                    value={passwordConfirm}
+                    onChange={handlePasswordConfirmChange}
+                    error={password !== passwordConfirm}
+                    helperText={errorMessage}
+                  />
+                  <br /> <br />
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    type="submit"
+                    size="large"
+                    sx={{ bgcolor: "black" }}
+                  >
+                    Update
+                  </Button>
+                </Box>
+              </Container>
             </div>
-            <br />
-            <br />
-            <br />
           </>
         )}
       </div>

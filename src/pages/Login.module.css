@@ -3,11 +3,6 @@
   border-radius: 15px;
 }
 
-.login {
-  margin: auto;
-  width: 500px;
-}
-
 .login h3 {
   text-transform: uppercase;
   letter-spacing: 0.1rem;

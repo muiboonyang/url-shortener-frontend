@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadingStatus } from "../redux/loadingSlice";
 
 import styles from "./CreateAccount.module.css";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -110,77 +111,79 @@ const CreateAccount = (): JSX.Element => {
       ) : (
         <>
           <div className={styles.createAccount}>
-            <br />
-            <h3>Create Account</h3>
-            <br />
+            <Container maxWidth="sm">
+              <Box>
+                <br />
+                <h3>Create Account</h3>
+                <br />
+              </Box>
 
-            <Box component="form" onSubmit={handleSubmit} autoComplete="off">
-              <TextField
-                required
-                fullWidth
-                id="outlined-name"
-                label="Name"
-                type="text"
-                value={name}
-                onChange={handleNameChange}
-              />
-              <br /> <br />
-              <TextField
-                required
-                fullWidth
-                id="outlined-email"
-                label="Email"
-                type="email"
-                value={username}
-                onChange={handleUsernameChange}
-              />
-              <br /> <br />
-              <TextField
-                required
-                fullWidth
-                id="outlined-password-input"
-                label="Password"
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-                error={password !== passwordConfirm}
-                helperText={errorMessage}
-              />
-              <br /> <br />
-              <TextField
-                required
-                fullWidth
-                id="outlined-password-input2"
-                label="Confirm Password"
-                type="password"
-                value={passwordConfirm}
-                onChange={handlePasswordConfirmChange}
-                error={password !== passwordConfirm}
-                helperText={errorMessage}
-              />
-              <br /> <br />
-              <Button
-                fullWidth
-                variant="contained"
-                type="submit"
-                size="large"
-                sx={{ bgcolor: "black" }}
-              >
-                Submit
-              </Button>
-              <hr />
-              <Button
-                fullWidth
-                variant="outlined"
-                size="large"
-                sx={{ color: "gray" }}
-                onClick={handleLoginRedirect}
-              >
-                Already have an account? Login here
-              </Button>
-            </Box>
-
-            <br />
+              <Box component="form" onSubmit={handleSubmit} autoComplete="off">
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-name"
+                  label="Name"
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
+                />
+                <br /> <br />
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-email"
+                  label="Email"
+                  type="email"
+                  value={username}
+                  onChange={handleUsernameChange}
+                />
+                <br /> <br />
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-password-input"
+                  label="Password"
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  error={password !== passwordConfirm}
+                  helperText={errorMessage}
+                />
+                <br /> <br />
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-password-input2"
+                  label="Confirm Password"
+                  type="password"
+                  value={passwordConfirm}
+                  onChange={handlePasswordConfirmChange}
+                  error={password !== passwordConfirm}
+                  helperText={errorMessage}
+                />
+                <br /> <br />
+                <Button
+                  fullWidth
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  sx={{ bgcolor: "black" }}
+                >
+                  Submit
+                </Button>
+                <hr />
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  size="large"
+                  sx={{ color: "gray" }}
+                  onClick={handleLoginRedirect}
+                >
+                  Already have an account? Login here
+                </Button>
+              </Box>
+            </Container>
           </div>
         </>
       )}

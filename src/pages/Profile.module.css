@@ -3,11 +3,6 @@
   border-radius: 15px;
 }
 
-.profile {
-  margin: auto;
-  width: 700px;
-}
-
 .profile h3 {
   text-transform: uppercase;
   letter-spacing: 0.1rem;

@@ -3,11 +3,6 @@
   border-radius: 15px;
 }
 
-.createAccount {
-  margin: auto;
-  width: 500px;
-}
-
 .createAccount h3 {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
