@@ -27,7 +27,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -244,29 +243,27 @@ const NavBar = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                      <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                          <AccountCircle />
-                          <Typography
-                            variant="h6"
-                            noWrap
-                            sx={{
-                              pl: 1,
-                              display: { xs: "none", md: "flex" },
-                              fontFamily: "monospace",
-                              fontWeight: 700,
-                              letterSpacing: "0rem",
-                              color: "inherit",
-                              textDecoration: "none",
-                              "&:hover": {
-                                color: "white",
-                              },
-                            }}
-                          >
-                            {profileName}
-                          </Typography>
-                        </IconButton>
-                      </Tooltip>
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <AccountCircle />
+                        <Typography
+                          variant="h6"
+                          noWrap
+                          sx={{
+                            pl: 1,
+                            display: { xs: "none", md: "flex" },
+                            fontFamily: "monospace",
+                            fontWeight: 700,
+                            letterSpacing: "0rem",
+                            color: "inherit",
+                            textDecoration: "none",
+                            "&:hover": {
+                              color: "white",
+                            },
+                          }}
+                        >
+                          {profileName}
+                        </Typography>
+                      </IconButton>
 
                       <Menu
                         sx={{ mt: "45px" }}
