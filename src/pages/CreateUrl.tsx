@@ -79,7 +79,7 @@ const CreateUrl = (): JSX.Element => {
       ) : (
         <>
           <br />
-          <h3>Create Short Link</h3>
+          <h3>Shorten Link</h3>
           <br />
           <div className={styles.createUrl}>
             <Box
