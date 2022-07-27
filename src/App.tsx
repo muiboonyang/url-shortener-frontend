@@ -4,6 +4,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { RootState } from "./redux/store";
 import { useSelector } from "react-redux";
 
+import Toolbar from "@mui/material/Toolbar";
 import NavBar from "./components/NavBar";
 import Protected from "./components/Protected";
 import Home from "./pages/Home";
@@ -20,6 +21,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <NavBar />
+        <Toolbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

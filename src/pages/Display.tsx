@@ -124,7 +124,7 @@ const Display = (): JSX.Element => {
           </Typography>
         </TableCell>
 
-        <TableCell align="left">
+        <TableCell align="center">
           <Typography
             component="a"
             href={`https://url-shortener-sg.herokuapp.com/${url.short}`}
@@ -138,9 +138,9 @@ const Display = (): JSX.Element => {
           </Typography>
         </TableCell>
 
-        <TableCell align="left">{url.clicks}</TableCell>
+        <TableCell align="center">{url.clicks}</TableCell>
 
-        <TableCell align="left">
+        <TableCell align="center">
           <IconButton
             aria-label="copy"
             onClick={() => {
@@ -153,7 +153,7 @@ const Display = (): JSX.Element => {
           </IconButton>
         </TableCell>
 
-        <TableCell align="left">
+        <TableCell align="center">
           <IconButton
             aria-label="copy"
             onClick={() => {
@@ -164,7 +164,7 @@ const Display = (): JSX.Element => {
           </IconButton>
         </TableCell>
 
-        <TableCell align="left">
+        <TableCell align="center">
           <IconButton
             aria-label="delete"
             onClick={() => {
@@ -222,11 +222,11 @@ const Display = (): JSX.Element => {
                   <TableHead>
                     <TableRow>
                       <TableCell>Full URL</TableCell>
-                      <TableCell>Short URL</TableCell>
-                      <TableCell>Clicks</TableCell>
-                      <TableCell>Copy</TableCell>
-                      <TableCell>Edit</TableCell>
-                      <TableCell>Delete</TableCell>
+                      <TableCell align="center">Short URL</TableCell>
+                      <TableCell align="center">Clicks</TableCell>
+                      <TableCell align="center">Copy</TableCell>
+                      <TableCell align="center">Edit</TableCell>
+                      <TableCell align="center">Delete</TableCell>
                     </TableRow>
                   </TableHead>
 

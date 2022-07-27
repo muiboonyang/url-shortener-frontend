@@ -129,7 +129,7 @@ const NavBar = () => {
         <ThemeProvider theme={darkTheme}>
           {currentUser ? (
             <>
-              <AppBar position="static">
+              <AppBar position="fixed">
                 <Container maxWidth="xl">
                   <Toolbar disableGutters>
                     <LinkIcon
@@ -296,7 +296,7 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <AppBar position="static">
+              <AppBar position="fixed">
                 <Container maxWidth="xl">
                   <Toolbar disableGutters>
                     <LinkIcon
