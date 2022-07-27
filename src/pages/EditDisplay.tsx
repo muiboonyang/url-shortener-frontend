@@ -66,7 +66,6 @@ const EditDisplay = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.editUrl}>
-      <br />
       <Box
         component="form"
         onSubmit={handleSubmit}

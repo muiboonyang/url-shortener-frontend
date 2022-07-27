@@ -180,17 +180,6 @@ const Display = (): JSX.Element => {
 
   return (
     <>
-      {isEditing ? (
-        <EditDisplay
-          toggleEditForm={toggleEditForm}
-          results={results}
-          urlResults={urlResults}
-          selectedIndex={selectedIndex}
-        />
-      ) : (
-        ""
-      )}
-
       <Grid
         container
         direction="row-reverse"
@@ -206,6 +195,18 @@ const Display = (): JSX.Element => {
           label="Dark mode"
         />
       </Grid>
+
+      {isEditing ? (
+        <EditDisplay
+          toggleEditForm={toggleEditForm}
+          results={results}
+          urlResults={urlResults}
+          selectedIndex={selectedIndex}
+        />
+      ) : (
+        ""
+      )}
+
       <div className={styles.display}>
         <br />
 
