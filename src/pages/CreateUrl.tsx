@@ -42,6 +42,8 @@ const CreateUrl = (): JSX.Element => {
       if (res.status === 200) {
         console.log(data.message);
         navigate("/myurls");
+      } else if (res.status === 403) {
+        shortenUrl();
       }
     } catch (err) {
       console.log(err);
