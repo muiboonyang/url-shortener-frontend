@@ -279,7 +279,7 @@ const Display = (): JSX.Element => {
                         },
                       }}
                     >
-                      <StyledTableCell>Full URL</StyledTableCell>
+                      <StyledTableCell>Long URL</StyledTableCell>
                       <StyledTableCell align="center">
                         Short URL
                       </StyledTableCell>
