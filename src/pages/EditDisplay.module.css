@@ -1,3 +1,8 @@
+.container {
+  margin: auto;
+  text-align: center;
+}
+
 .editUrl {
   margin: auto;
   width: 70%;
@@ -20,8 +25,3 @@
   border: 1px solid rgb(67, 172, 173);
   color: black;
 } */
-
-.container {
-  margin: auto;
-  text-align: center;
-}

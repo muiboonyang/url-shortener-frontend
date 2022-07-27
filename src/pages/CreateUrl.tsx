@@ -8,6 +8,7 @@ import { addRenderCount } from "../redux/renderSlice";
 import { loadingStatus } from "../redux/loadingSlice";
 
 import styles from "./CreateUrl.module.css";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -80,36 +81,41 @@ const CreateUrl = (): JSX.Element => {
         </div>
       ) : (
         <>
-          <br />
-          <h3>Shorten Link</h3>
-          <br />
           <div className={styles.createUrl}>
-            <Box
-              component="form"
-              onSubmit={onSubmitQuery}
-              sx={{ m: 1, display: "flex", flexDirection: "row" }}
-              autoComplete="off"
-            >
-              <TextField
-                required
-                fullWidth
-                variant="standard"
-                id="outlined"
-                label="URL"
-                type="url"
-                value={input}
-                onChange={handleSearchInput}
-              />
+            <Container maxWidth="xl">
+              <Box>
+                <br />
+                <h3>Shorten Link</h3>
+                <br />
+              </Box>
 
-              <Button
-                variant="contained"
-                size="small"
-                type="submit"
-                sx={{ ml: 5, py: 0, bgcolor: "black" }}
+              <Box
+                component="form"
+                onSubmit={onSubmitQuery}
+                sx={{ m: 1, my: 15, display: "flex", flexDirection: "row" }}
+                autoComplete="off"
               >
-                Submit
-              </Button>
-            </Box>
+                <TextField
+                  required
+                  fullWidth
+                  variant="standard"
+                  id="outlined"
+                  label="URL"
+                  type="url"
+                  value={input}
+                  onChange={handleSearchInput}
+                />
+
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  sx={{ ml: 5, py: 0, bgcolor: "black" }}
+                >
+                  Submit
+                </Button>
+              </Box>
+            </Container>
           </div>
         </>
       )}

@@ -12,9 +12,22 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
 type Props = {
   shortId: string;
 };
+
+const lightTheme = createTheme({ palette: { mode: "light" } });
+const darkTheme = createTheme({ palette: { mode: "dark" } });
 
 const Display = (): JSX.Element => {
   const username = useSelector((state: RootState) => state.user.username);
@@ -77,27 +90,47 @@ const Display = (): JSX.Element => {
 
   const displayResults = results.map((url) => {
     return (
-      <tr key={uuidv4()}>
-        <td>
-          <a href={url.full} target="_blank" rel="noreferrer">
+      <TableRow
+        key={uuidv4()}
+        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+      >
+        <TableCell component="th" scope="row">
+          <Typography
+            component="a"
+            href={url.full}
+            target="_blank"
+            sx={{
+              color: "inherit",
+              textDecoration: "none",
+              "&:hover": {
+                color: "white",
+              },
+            }}
+          >
             {url.full}
-          </a>
-        </td>
+          </Typography>
+        </TableCell>
 
-        <td>
-          <a
+        <TableCell align="left">
+          <Typography
+            component="a"
             href={`https://url-shortener-sg.herokuapp.com/${url.short}`}
             target="_blank"
-            id="link"
-            rel="noreferrer"
+            sx={{
+              color: "inherit",
+              textDecoration: "none",
+              "&:hover": {
+                color: "white",
+              },
+            }}
           >
             {url.short}
-          </a>
-        </td>
+          </Typography>
+        </TableCell>
 
-        <td>{url.clicks}</td>
+        <TableCell align="center">{url.clicks}</TableCell>
 
-        <td>
+        <TableCell align="center">
           <IconButton
             aria-label="copy"
             onClick={() => {
@@ -108,9 +141,9 @@ const Display = (): JSX.Element => {
           >
             <ContentCopyIcon />
           </IconButton>
-        </td>
+        </TableCell>
 
-        <td>
+        <TableCell align="center">
           <IconButton
             aria-label="copy"
             onClick={() => {
@@ -119,9 +152,9 @@ const Display = (): JSX.Element => {
           >
             <EditIcon />
           </IconButton>
-        </td>
+        </TableCell>
 
-        <td>
+        <TableCell align="center">
           <IconButton
             aria-label="delete"
             onClick={() => {
@@ -130,8 +163,8 @@ const Display = (): JSX.Element => {
           >
             <DeleteIcon />
           </IconButton>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
     );
   });
 
@@ -147,22 +180,27 @@ const Display = (): JSX.Element => {
       ) : (
         ""
       )}
-      <div className={styles.container}>
+      <br />
+      <div className={styles.display}>
         <br />
-        <table className="table table-striped table-responsive">
-          <thead>
-            <tr>
-              <th>Full URL</th>
-              <th>Short URL</th>
-              <th>Clicks</th>
-              <th>Copy</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
+        <ThemeProvider theme={lightTheme}>
+          <TableContainer component={Paper} elevation={24}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Full URL</TableCell>
+                  <TableCell>Short URL</TableCell>
+                  <TableCell>Clicks</TableCell>
+                  <TableCell>Copy</TableCell>
+                  <TableCell>Edit</TableCell>
+                  <TableCell>Delete</TableCell>
+                </TableRow>
+              </TableHead>
 
-          <tbody>{displayResults}</tbody>
-        </table>
+              <TableBody>{displayResults}</TableBody>
+            </Table>
+          </TableContainer>
+        </ThemeProvider>
       </div>
     </>
   );
