@@ -83,7 +83,7 @@ const CreateUrl = (): JSX.Element => {
         <>
           <div className={styles.createUrl}>
             <Container maxWidth="xl">
-              <Box>
+              <Box sx={{ mt: 3 }}>
                 <br />
                 <h3>Shorten Link</h3>
                 <br />
