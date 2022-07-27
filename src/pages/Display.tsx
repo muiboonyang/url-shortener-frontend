@@ -16,12 +16,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -35,15 +36,8 @@ const lightTheme = createTheme({ palette: { mode: "light" } });
 const darkTheme = createTheme({ palette: { mode: "dark" } });
 
 const Display = (): JSX.Element => {
-  const username = useSelector((state: RootState) => state.user.username);
-  const renderCount = useSelector(
-    (state: RootState) => state.render.renderCount
-  );
-  const dispatch = useDispatch();
-
-  const [results, setResults] = useState<any[]>([]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [selectedIndex, setIndex] = useState(0);
+  let StyledTableCell: any;
+  let StyledTableRow: any;
 
   const [dense, setDense] = React.useState(false);
   const [dark, setDark] = React.useState(false);
@@ -55,6 +49,58 @@ const Display = (): JSX.Element => {
   const handleChangeDark = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDark(event.target.checked);
   };
+
+  if (dark) {
+    StyledTableCell = styled(TableCell)(({ theme }) => ({
+      [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+      },
+      [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+      },
+    }));
+
+    StyledTableRow = styled(TableRow)(({ theme }) => ({
+      "&:nth-of-type(odd)": {
+        backgroundColor: theme.palette.action.hover,
+      },
+      // hide last border
+      "&:last-child td, &:last-child th": {
+        border: 0,
+      },
+    }));
+  } else {
+    StyledTableCell = styled(TableCell)(({ theme }) => ({
+      [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.common.black,
+      },
+      [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+      },
+    }));
+
+    StyledTableRow = styled(TableRow)(({ theme }) => ({
+      "&:nth-of-type(odd)": {
+        backgroundColor: theme.palette.action.hover,
+      },
+      // hide last border
+      "&:last-child td, &:last-child th": {
+        border: 0,
+      },
+    }));
+  }
+
+  const username = useSelector((state: RootState) => state.user.username);
+  const renderCount = useSelector(
+    (state: RootState) => state.render.renderCount
+  );
+  const dispatch = useDispatch();
+
+  const [results, setResults] = useState<any[]>([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedIndex, setIndex] = useState(0);
 
   const urlResults = async () => {
     dispatch(loadingStatus());
@@ -106,11 +152,11 @@ const Display = (): JSX.Element => {
 
   const displayResults = results.map((url) => {
     return (
-      <TableRow
+      <StyledTableRow
         key={uuidv4()}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-        <TableCell component="th" scope="row">
+        <StyledTableCell component="th" scope="row">
           <Typography
             component="a"
             href={url.full}
@@ -118,13 +164,16 @@ const Display = (): JSX.Element => {
             sx={{
               color: "inherit",
               textDecoration: "none",
+              "&:hover": {
+                color: "inherit",
+              },
             }}
           >
             {url.full}
           </Typography>
-        </TableCell>
+        </StyledTableCell>
 
-        <TableCell align="center">
+        <StyledTableCell align="center">
           <Typography
             component="a"
             href={`https://url-shortener-sg.herokuapp.com/${url.short}`}
@@ -132,15 +181,18 @@ const Display = (): JSX.Element => {
             sx={{
               color: "inherit",
               textDecoration: "none",
+              "&:hover": {
+                color: "inherit",
+              },
             }}
           >
             {url.short}
           </Typography>
-        </TableCell>
+        </StyledTableCell>
 
-        <TableCell align="center">{url.clicks}</TableCell>
+        <StyledTableCell align="center">{url.clicks}</StyledTableCell>
 
-        <TableCell align="center">
+        <StyledTableCell align="center">
           <IconButton
             aria-label="copy"
             onClick={() => {
@@ -151,9 +203,9 @@ const Display = (): JSX.Element => {
           >
             <ContentCopyIcon />
           </IconButton>
-        </TableCell>
+        </StyledTableCell>
 
-        <TableCell align="center">
+        <StyledTableCell align="center">
           <IconButton
             aria-label="copy"
             onClick={() => {
@@ -162,9 +214,9 @@ const Display = (): JSX.Element => {
           >
             <EditIcon />
           </IconButton>
-        </TableCell>
+        </StyledTableCell>
 
-        <TableCell align="center">
+        <StyledTableCell align="center">
           <IconButton
             aria-label="delete"
             onClick={() => {
@@ -173,8 +225,8 @@ const Display = (): JSX.Element => {
           >
             <DeleteIcon />
           </IconButton>
-        </TableCell>
-      </TableRow>
+        </StyledTableCell>
+      </StyledTableRow>
     );
   });
 
@@ -212,7 +264,7 @@ const Display = (): JSX.Element => {
 
         <ThemeProvider theme={dark ? darkTheme : lightTheme}>
           <Box sx={{ width: "100%" }}>
-            <Paper sx={{ width: "100%", mb: 2 }} elevation={24}>
+            <Paper sx={{ width: "100%", mb: 2 }} elevation={2}>
               <TableContainer>
                 <Table
                   sx={{ minWidth: 650 }}
@@ -220,13 +272,21 @@ const Display = (): JSX.Element => {
                   size={dense ? "small" : "medium"}
                 >
                   <TableHead>
-                    <TableRow>
-                      <TableCell>Full URL</TableCell>
-                      <TableCell align="center">Short URL</TableCell>
-                      <TableCell align="center">Clicks</TableCell>
-                      <TableCell align="center">Copy</TableCell>
-                      <TableCell align="center">Edit</TableCell>
-                      <TableCell align="center">Delete</TableCell>
+                    <TableRow
+                      sx={{
+                        "& th": {
+                          fontWeight: 700,
+                        },
+                      }}
+                    >
+                      <StyledTableCell>Full URL</StyledTableCell>
+                      <StyledTableCell align="center">
+                        Short URL
+                      </StyledTableCell>
+                      <StyledTableCell align="center">Clicks</StyledTableCell>
+                      <StyledTableCell align="center">Copy</StyledTableCell>
+                      <StyledTableCell align="center">Edit</StyledTableCell>
+                      <StyledTableCell align="center">Delete</StyledTableCell>
                     </TableRow>
                   </TableHead>
 
