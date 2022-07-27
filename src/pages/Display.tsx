@@ -27,7 +27,7 @@ type Props = {
 };
 
 const lightTheme = createTheme({ palette: { mode: "light" } });
-const darkTheme = createTheme({ palette: { mode: "dark" } });
+// const darkTheme = createTheme({ palette: { mode: "dark" } });
 
 const Display = (): JSX.Element => {
   const username = useSelector((state: RootState) => state.user.username);
