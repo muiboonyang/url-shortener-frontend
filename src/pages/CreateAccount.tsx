@@ -11,10 +11,24 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Alert from "@mui/material/Alert";
 
 const CreateAccount = (): JSX.Element => {
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
   const dispatch = useDispatch();
+
+  const [alert, setAlert] = useState("");
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setAlert("");
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [alert]);
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -69,6 +83,7 @@ const CreateAccount = (): JSX.Element => {
         setName("");
         handleLoginRedirect();
       } else {
+        setAlert(data.message);
         throw new Error("Something went wrong.");
       }
     } catch (err) {
@@ -97,6 +112,25 @@ const CreateAccount = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
+      {alert ? (
+        <Stack
+          sx={{ width: "100%" }}
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="flex-start"
+          spacing={2}
+        >
+          <Alert
+            severity="error"
+            onClose={() => {
+              setAlert("");
+            }}
+          >
+            {alert}
+          </Alert>
+        </Stack>
+      ) : null}
+
       {isLoading ? (
         <div
           style={{

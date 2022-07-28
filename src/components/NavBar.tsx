@@ -62,17 +62,17 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  const [message, setMessage] = useState("");
+  const [alert, setAlert] = useState("");
 
   useEffect(() => {
     const timeId = setTimeout(() => {
-      setMessage("");
+      setAlert("");
     }, 3000);
 
     return () => {
       clearTimeout(timeId);
     };
-  }, [message]);
+  }, [alert]);
 
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
   const currentUser = useSelector((state: RootState) => state.user.username);
@@ -113,7 +113,7 @@ const NavBar = () => {
       if (res.status === 200) {
         dispatch(logout());
         handleLoginRedirect();
-        setMessage(data.message);
+        setAlert(data.message);
       } else {
         throw new Error("Something went wrong.");
       }
@@ -373,7 +373,7 @@ const NavBar = () => {
         </ThemeProvider>
       </div>
 
-      {message ? (
+      {alert ? (
         <Stack
           sx={{ width: "100%" }}
           direction="row"
@@ -383,10 +383,10 @@ const NavBar = () => {
         >
           <Alert
             onClose={() => {
-              setMessage("");
+              setAlert("");
             }}
           >
-            {message}
+            {alert}
           </Alert>
         </Stack>
       ) : null}
