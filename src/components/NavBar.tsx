@@ -382,6 +382,7 @@ const NavBar = () => {
           spacing={2}
         >
           <Alert
+            severity="success"
             onClose={() => {
               setAlert("");
             }}
